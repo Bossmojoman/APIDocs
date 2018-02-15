@@ -1,0 +1,903 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "API Documentation - Authorization Service",
+    "description": "The Healthwise Authorization API controls access to the various Healthwise services using the OAUTH 2.0 protocol."
+  },
+  "host": "example.com",
+  "basePath": "/",
+  "securityDefinitions": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "http://example.com",
+      "scopes": {},
+      "x-skip-client-authentication": false
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/oauth2/certs/{kid}": {
+      "get": {
+        "description": "Returns certificate validation information based on a kid value",
+        "summary": "Get Certificate",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Oauth2CertsByKidGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "kid",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetCertificateresponse"
+            },
+            "examples": {
+              "application/json": {
+                "keys": [
+                  {
+                    "kty": "RSA",
+                    "alg": "RS256",
+                    "use": "sig",
+                    "kid": "40AC7D9B4FA317EE4B6D95BF430F322D28A97249",
+                    "n": "oaIR6qZ6Bpa6bQmZftvnJTAJQO6zYNM6AgFsAMnKs3nOY8ash6l4P28Zj7b7Jd2ffkdb0X9/65D8RHVdHpWvc3HXdw3ae79CPIrm9mnuhbyXIvu1veGd2j47UyLkgwMw20UlUQKB1tEy2p1BpcH/srbAqNAL7Wqo+8UVxRJm5JMScxY3yHj+mBY2jEHCJg8rHaRF81GQky57lTQfisxIMa+DLIgFmXEEDlD/jxY+gWeRj8iHIx8bpAv3RSrNUFYokEazUnKP6ep2nc3r1oegCBW2wz85oCB252jpZEzRdmQz8VIKAWsM+LLuvIjpupTwz15zlx1rf9EhgF8RtHLrmQ==",
+                    "e": "AQAB"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/oauth2/certs": {
+      "get": {
+        "description": "Returns security certificate information allowing validation of JWTS",
+        "summary": "Get Certificate Keys",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Oauth2CertsGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetCertificateKeysresponse"
+            },
+            "examples": {
+              "application/json": {
+                "keys": [
+                  {
+                    "kty": "RSA",
+                    "alg": "RS256",
+                    "use": "sig",
+                    "kid": "04D94987CF93F38EC40DDE89C66378BB75A7553C",
+                    "n": "1yfl6Xgfb/Jq16RZziMKFsMgHpEu6sSkh+ziaDsWVqXxSarg7tGCobsIP4v0LVbCGyvTryyu1oBvVurC2PZgmHoZ1vZVVQL/LRWOPR9twvF6R8rs7SZZBAnv69ZW2Z1WGFyCXqzFd4MaHHALIlhbm3p/qhc2rY1nCLTlgwiyZMkauJnDAhvo+CfNHKAryt9YzlJCjOqo1Smu3hum8TSlxAuLCzmy3C5DMQfW0rqa0ir1Iq/6qJh35LoETCkDA65zMcT94pb1Gf6jnYv8p0jMi85TolcbYJ3JBgrRGhcmIV23FDIQBwSR6U+9Q6jt5HWBHst2SZ/bVnH7qSfNF7PT/w==",
+                    "e": "AQAB"
+                  },
+                  {
+                    "kty": "RSA",
+                    "alg": "RS256",
+                    "use": "sig",
+                    "kid": "40AC7D9B4FA317EE4B6D95BF430F322D28A97249",
+                    "n": "oaIR6qZ6Bpa6bQmZftvnJTAJQO6zYNM6AgFsAMnKs3nOY8ash6l4P28Zj7b7Jd2ffkdb0X9/65D8RHVdHpWvc3HXdw3ae79CPIrm9mnuhbyXIvu1veGd2j47UyLkgwMw20UlUQKB1tEy2p1BpcH/srbAqNAL7Wqo+8UVxRJm5JMScxY3yHj+mBY2jEHCJg8rHaRF81GQky57lTQfisxIMa+DLIgFmXEEDlD/jxY+gWeRj8iHIx8bpAv3RSrNUFYokEazUnKP6ep2nc3r1oegCBW2wz85oCB252jpZEzRdmQz8VIKAWsM+LLuvIjpupTwz15zlx1rf9EhgF8RtHLrmQ==",
+                    "e": "AQAB"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "GET",
+              "uri": "/oauth2/certs",
+              "headers": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {{jwt}}"
+              }
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "RAW",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {
+                "Cache-Control": "no-cache,no-cache, max-age=0, no-store, must-revalidate, private",
+                "Content-Length": "912",
+                "Content-Type": "application/json; charset=utf-8",
+                "Date": "Thu, 25 Jan 2018 22:01:40 GMT",
+                "Expires": "-1",
+                "Pragma": "no-cache,no-cache",
+                "Server": "Microsoft-IIS/10.0",
+                "X-AspNet-Version": "4.0.30319",
+                "X-Content-Type-Options": "nosniff",
+                "X-Frame-Options": "SAMEORIGIN",
+                "X-HW-Version": "1; equivalent-to=1",
+                "X-Healthwise-Software-Version": "1.2.175.1",
+                "X-Powered-By": "ASP.NET",
+                "X-XSS-Protection": "1"
+              },
+              "body": "{\"keys\":[{\"kty\":\"RSA\",\"alg\":\"RS256\",\"use\":\"sig\",\"kid\":\"04D94987CF93F38EC40DDE89C66378BB75A7553C\",\"n\":\"1yfl6Xgfb/Jq16RZziMKFsMgHpEu6sSkh+ziaDsWVqXxSarg7tGCobsIP4v0LVbCGyvTryyu1oBvVurC2PZgmHoZ1vZVVQL/LRWOPR9twvF6R8rs7SZZBAnv69ZW2Z1WGFyCXqzFd4MaHHALIlhbm3p/qhc2rY1nCLTlgwiyZMkauJnDAhvo+CfNHKAryt9YzlJCjOqo1Smu3hum8TSlxAuLCzmy3C5DMQfW0rqa0ir1Iq/6qJh35LoETCkDA65zMcT94pb1Gf6jnYv8p0jMi85TolcbYJ3JBgrRGhcmIV23FDIQBwSR6U+9Q6jt5HWBHst2SZ/bVnH7qSfNF7PT/w==\",\"e\":\"AQAB\"},{\"kty\":\"RSA\",\"alg\":\"RS256\",\"use\":\"sig\",\"kid\":\"40AC7D9B4FA317EE4B6D95BF430F322D28A97249\",\"n\":\"oaIR6qZ6Bpa6bQmZftvnJTAJQO6zYNM6AgFsAMnKs3nOY8ash6l4P28Zj7b7Jd2ffkdb0X9/65D8RHVdHpWvc3HXdw3ae79CPIrm9mnuhbyXIvu1veGd2j47UyLkgwMw20UlUQKB1tEy2p1BpcH/srbAqNAL7Wqo+8UVxRJm5JMScxY3yHj+mBY2jEHCJg8rHaRF81GQky57lTQfisxIMa+DLIgFmXEEDlD/jxY+gWeRj8iHIx8bpAv3RSrNUFYokEazUnKP6ep2nc3r1oegCBW2wz85oCB252jpZEzRdmQz8VIKAWsM+LLuvIjpupTwz15zlx1rf9EhgF8RtHLrmQ==\",\"e\":\"AQAB\"}]}"
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "Get Certificate Keys",
+            "x-testDescription": "Returns security certificate information allowing validation of JWTS"
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/v1/oauth2/token": {
+      "post": {
+        "description": "TODO: Add Description",
+        "summary": "Claim Authorization Code1",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "V1Oauth2TokenPost2",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "grant_type",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "code",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "redirect_uri",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "POST",
+              "uri": "/v1/oauth2/token",
+              "headers": {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": "Basic {{client.basic}}"
+              },
+              "body": "grant_type=authorization_code&code=9b945000-e5c0-4f64-8917-b5c2da160f77&redirect_uri=http://somewhere.com"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "Claim Authorization Code1",
+            "x-testDescription": "TODO: Add Description"
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "description": "Gets all users\n\n> Supports paging\n\n## Query Parameters\n\n| Parameter  | Type  | Description  | Allowed Values |\n|---|---|---|---|\n| skip  |  integer  | number of records to skip for paged data ||\n| top  | integer  | number of records to retrieve starting at \"skip\"  ||",
+        "summary": "Get Users",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "UsersGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "GET",
+              "uri": "/users",
+              "headers": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {{jwt}}"
+              }
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "Get Users",
+            "x-testDescription": "Gets all users\n\n> Supports paging\n\n## Query Parameters\n\n| Parameter  | Type  | Description  | Allowed Values |\n|---|---|---|---|\n| skip  |  integer  | number of records to skip for paged data ||\n| top  | integer  | number of records to retrieve starting at \"skip\"  ||"
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/users/notify": {
+      "post": {
+        "description": "TODO: Add Description",
+        "summary": "Notify user of username",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "UsersNotifyPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/NotifyUserOfUsernamerequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "POST",
+              "uri": "/users/notify",
+              "headers": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {{jwt}}"
+              },
+              "body": "{\n  \"emailaddress\":\"jrex@healthwise.org\",\n  \"clienttoken\":\"healthwise\",\n  \"clientalias\":\"healthwise\",\n  \"notificationtype\":\"username\"\n}"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "Notify user of username",
+            "x-testDescription": "TODO: Add Description"
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/users/password": {
+      "post": {
+        "description": "TODO: Add Description",
+        "summary": "Change Password",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "UsersPasswordPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ChangePasswordrequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "POST",
+              "uri": "/users/password",
+              "headers": {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {{jwt}}"
+              },
+              "body": "{\n  \"userdata\":\"JcSnMgaUWqvxkopgZ5jSO%2bil9sTbhidpknNeevRWTzMPTL2y26%2bmLqL%2bZ5Fagxka0UrAyNa8RmK1R7j24NFFaTOPQrpo%2fgeiXQqFQ2puqXBgf%2bdrDM1cL6gjiqZzGc9ufcMLxJpuhm%2b0bkW0r1tZkzJYDgUGfUKoJWkxXni%2bid1k3S39eziTlwwRmvcaB0OrkhfwAEEHCyGMaSmd%2bh%2fuotjA50SUXGHLm1VQ%2b6zzfl29boARsp1HBUUjyhoVaFLLMj%2b%2fWavJyn3nyhmAEwTkACCXivp2k82AG0KPRCaZ%2fOGmlCNQtxhRuzDhQZ4cwepH7azakLrQFtrmORINgDFhgA%3d%3d\",\n  \"password\":\"Newpassword!3\"\n}"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "Change Password",
+            "x-testDescription": "TODO: Add Description"
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/oauth2/token": {
+      "post": {
+        "description": "## TODO: Evaluate that we have an endpoint that has options not available to clients that utilizes security through obscurity. Remeber \"Security is a journey, not a destination\"\n\nCreates an access token from the provided credentials. These tokens are used to grant access to Healthwise APIs and the access token must be provided with each API request.\nA client id and client secret must be provided in the request for an access token. The client id and client secret are provided by Healthwise for accessing the APIs.\n\n## Data Parameters\n\n| Parameter  | Type  | Description  | Allowed Values |\n|---|---|---|---|\n| grant\\_type  | string  | [Required] The type of grant allowed  ||\n| scope  | string  | [Required] A client id has access to one or more scopes which correspond to different Healthwise APIs. If no scope is provided in a request for an access token, the access token will authorize access to all scopes for that client id. If one or more scopes are provided in the request, the access token will only be usable for those scopes. Available scopes depend on the client id. To determine which scopes are available for a given client id, the /register/{client_id} endpoint can be used. Examples of scopes include  |configuration.api consumer.api content.api fulfillment.api link.api packaging.api ccf.api|\n| product  | string  | [Optional] The space separated list of products that are used to request a list of scopes for that product. If both a scope and a product are requested the union of the scopes will be used.  ||\n| expires\\_in  |  string  | [Optional] Time in seconds token will be valid. Maximum value: 86400  ||\n| content\\_configuration\\_id  |  type:string  | [Optional] Content Configuration for client  ||\n| reference\\_number  |  string  | <TODO: I think this is a settable flag> ||",
+        "summary": "Request Access Token",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Oauth2TokenPost",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "grant_type",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "[Required] Allowed values: client_credentials, refresh_token"
+          },
+          {
+            "name": "scope",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "[Required] Allowed values: * configuration.api consumer.api content.api fulfillment.api link.api packaging.api ccf.api authorization.api"
+          },
+          {
+            "name": "client_token",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/RequestAccessTokenresponse"
+            },
+            "examples": {
+              "application/json": {
+                "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjA0RDk0OTg3Q0Y5M0YzOEVDNDBEREU4OUM2NjM3OEJCNzVBNzU1M0MifQ.eyJzY29wZSI6ImF1dGhvcml6YXRpb24uYXBpIGNhbXBhaWduLmFwaSBjb25maWd1cmF0aW9uLmFwaSBjb25zdW1lci5hcGkgY29udGVudC5hcGkgZnVsZmlsbG1lbnQuYXBpIGhlYWx0aGNsb3VkaW50ZWdyYXRpb24uYXBpIGxpbmsuYXBpIHF1ZXN0aW9ubmFpcmUuYXBpIHNlYXJjaC5hcGkgdGF4b25vbXkuYXBpIiwiY2xpZW50X3Rva2VuIjoiaGVhbHRod2lzZS5nbGVuIiwiYXBwbGljYXRpb25faWQiOiJBUEkgU29sdXRpb24iLCJqdGkiOiI1ZTVkOGY2MC04NzY3LTRkNGYtYTMzNy1mMmRlYzVlMDQ5MmMiLCJpYXQiOiI2MzY1MjQyNDQ2MjM1MDQiLCJ0cmFja2luZ19pZCI6IjVlNWQ4ZjYwLTg3NjctNGQ0Zi1hMzM3LWYyZGVjNWUwNDkyYyIsImNvbnRlbnRfdmVyc2lvbiI6IjExLjUiLCJwcm9kdWN0IjoiIiwicm9sZXMiOiIiLCJ1cmxfYWxpYXMiOiIiLCJIV19DT05URU5UX0NPTkZJR19JRCI6ImhlYWx0aHdpc2UuZ2xlbi5yZWRveHVzZXIiLCJjb25zdW1lcl9pZCI6IioiLCJ0b2tlbl90eXBlIjoiQWNjZXNzIiwiaXNzIjoiaHR0cDovL2F1dGgudGVzdC5od2FwcHMubmV0IiwiYXVkIjoiYzkxOTg5MjRkNzdiNDY5N2I5NzAzZjdkZTJhNWYxMjciLCJleHAiOjE1MTY5MTQwNTcsIm5iZiI6MTUxNjgyNzY1Nywic3ViIjoiYzkxOTg5MjRkNzdiNDY5N2I5NzAzZjdkZTJhNWYxMjcifQ.pfdBguI3NNJbnaFNfJh53FYd1czBmBWGRe8LFZdLf4G9AEue5qttzRSZ8MyCWpTZ9xvNeLYtlmUlXmBtVXqj0W-1PZWFinlGBEdQOn4WAxRgBe5rOQfmkb_LDJEtCYvLaxDVho7X2V8lqyLoLlkW3iQcZh5spDRpT9BT3isoerfU8AO-wwiQLFj3vfWXEEdmJz5JjKSsyLVOVu0ypOqLS8MCKQSEqHvpr6CioCz_pG8NpDekC3fj3qflmHdFKsx85IVn82bvYaeLKO8Btho-5O0MC7TGhDblH8U5J3rdROU436LkQ2gS3rSbP2OOtB_8IvbCO1HJE4hzGQlp3GTudQ",
+                "token_type": "Bearer",
+                "expires_in": 86400
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/RequestAccessTokenerrorresponse"
+            },
+            "examples": {
+              "application/json": {
+                "error": "invalid_client",
+                "error_description": "A description of the error"
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "POST",
+              "uri": "/oauth2/token",
+              "headers": {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": "Basic {{client.basic}}"
+              },
+              "body": "grant_type=client_credentials&scope=*&client_token=healthwise"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "RAW",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {
+                "Cache-Control": "no-cache,no-cache, max-age=0, no-store, must-revalidate, private",
+                "Content-Length": "1404",
+                "Content-Type": "application/json; charset=utf-8",
+                "Date": "Wed, 24 Jan 2018 21:01:02 GMT",
+                "Expires": "-1",
+                "Pragma": "no-cache,no-cache",
+                "Server": "Microsoft-IIS/10.0",
+                "X-AspNet-Version": "4.0.30319",
+                "X-Content-Type-Options": "nosniff",
+                "X-Frame-Options": "SAMEORIGIN",
+                "X-HW-Version": "1; equivalent-to=1",
+                "X-Healthwise-Software-Version": "1.2.174.1",
+                "X-Powered-By": "ASP.NET",
+                "X-XSS-Protection": "1"
+              },
+              "body": "{\"access_token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjA0RDk0OTg3Q0Y5M0YzOEVDNDBEREU4OUM2NjM3OEJCNzVBNzU1M0MifQ.eyJzY29wZSI6ImF1dGhvcml6YXRpb24uYXBpIGNhbXBhaWduLmFwaSBjb25maWd1cmF0aW9uLmFwaSBjb25zdW1lci5hcGkgY29udGVudC5hcGkgZnVsZmlsbG1lbnQuYXBpIGhlYWx0aGNsb3VkaW50ZWdyYXRpb24uYXBpIGxpbmsuYXBpIHF1ZXN0aW9ubmFpcmUuYXBpIHNlYXJjaC5hcGkgdGF4b25vbXkuYXBpIiwiY2xpZW50X3Rva2VuIjoiaGVhbHRod2lzZS5nbGVuIiwiYXBwbGljYXRpb25faWQiOiJBUEkgU29sdXRpb24iLCJqdGkiOiI1ZTVkOGY2MC04NzY3LTRkNGYtYTMzNy1mMmRlYzVlMDQ5MmMiLCJpYXQiOiI2MzY1MjQyNDQ2MjM1MDQiLCJ0cmFja2luZ19pZCI6IjVlNWQ4ZjYwLTg3NjctNGQ0Zi1hMzM3LWYyZGVjNWUwNDkyYyIsImNvbnRlbnRfdmVyc2lvbiI6IjExLjUiLCJwcm9kdWN0IjoiIiwicm9sZXMiOiIiLCJ1cmxfYWxpYXMiOiIiLCJIV19DT05URU5UX0NPTkZJR19JRCI6ImhlYWx0aHdpc2UuZ2xlbi5yZWRveHVzZXIiLCJjb25zdW1lcl9pZCI6IioiLCJ0b2tlbl90eXBlIjoiQWNjZXNzIiwiaXNzIjoiaHR0cDovL2F1dGgudGVzdC5od2FwcHMubmV0IiwiYXVkIjoiYzkxOTg5MjRkNzdiNDY5N2I5NzAzZjdkZTJhNWYxMjciLCJleHAiOjE1MTY5MTQwNTcsIm5iZiI6MTUxNjgyNzY1Nywic3ViIjoiYzkxOTg5MjRkNzdiNDY5N2I5NzAzZjdkZTJhNWYxMjcifQ.pfdBguI3NNJbnaFNfJh53FYd1czBmBWGRe8LFZdLf4G9AEue5qttzRSZ8MyCWpTZ9xvNeLYtlmUlXmBtVXqj0W-1PZWFinlGBEdQOn4WAxRgBe5rOQfmkb_LDJEtCYvLaxDVho7X2V8lqyLoLlkW3iQcZh5spDRpT9BT3isoerfU8AO-wwiQLFj3vfWXEEdmJz5JjKSsyLVOVu0ypOqLS8MCKQSEqHvpr6CioCz_pG8NpDekC3fj3qflmHdFKsx85IVn82bvYaeLKO8Btho-5O0MC7TGhDblH8U5J3rdROU436LkQ2gS3rSbP2OOtB_8IvbCO1HJE4hzGQlp3GTudQ\",\"token_type\":\"Bearer\",\"expires_in\":86400}"
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "Request Access Token",
+            "x-testDescription": "## TODO: Evaluate that we have an endpoint that has options not available to clients that utilizes security through obscurity. Remeber \"Security is a journey, not a destination\"\n\nCreates an access token from the provided credentials. These tokens are used to grant access to Healthwise APIs and the access token must be provided with each API request.\nA client id and client secret must be provided in the request for an access token. The client id and client secret are provided by Healthwise for accessing the APIs.\n\n## Data Parameters\n\n| Parameter  | Type  | Description  | Allowed Values |\n|---|---|---|---|\n| grant\\_type  | string  | [Required] The type of grant allowed  ||\n| scope  | string  | [Required] A client id has access to one or more scopes which correspond to different Healthwise APIs. If no scope is provided in a request for an access token, the access token will authorize access to all scopes for that client id. If one or more scopes are provided in the request, the access token will only be usable for those scopes. Available scopes depend on the client id. To determine which scopes are available for a given client id, the /register/{client_id} endpoint can be used. Examples of scopes include  |configuration.api consumer.api content.api fulfillment.api link.api packaging.api ccf.api|\n| product  | string  | [Optional] The space separated list of products that are used to request a list of scopes for that product. If both a scope and a product are requested the union of the scopes will be used.  ||\n| expires\\_in  |  string  | [Optional] Time in seconds token will be valid. Maximum value: 86400  ||\n| content\\_configuration\\_id  |  type:string  | [Optional] Content Configuration for client  ||\n| reference\\_number  |  string  | <TODO: I think this is a settable flag> ||"
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GetCertificateresponse": {
+      "title": "Get CertificateResponse",
+      "example": {
+        "keys": [
+          {
+            "kty": "RSA",
+            "alg": "RS256",
+            "use": "sig",
+            "kid": "40AC7D9B4FA317EE4B6D95BF430F322D28A97249",
+            "n": "oaIR6qZ6Bpa6bQmZftvnJTAJQO6zYNM6AgFsAMnKs3nOY8ash6l4P28Zj7b7Jd2ffkdb0X9/65D8RHVdHpWvc3HXdw3ae79CPIrm9mnuhbyXIvu1veGd2j47UyLkgwMw20UlUQKB1tEy2p1BpcH/srbAqNAL7Wqo+8UVxRJm5JMScxY3yHj+mBY2jEHCJg8rHaRF81GQky57lTQfisxIMa+DLIgFmXEEDlD/jxY+gWeRj8iHIx8bpAv3RSrNUFYokEazUnKP6ep2nc3r1oegCBW2wz85oCB252jpZEzRdmQz8VIKAWsM+LLuvIjpupTwz15zlx1rf9EhgF8RtHLrmQ==",
+            "e": "AQAB"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "keys": {
+          "description": "",
+          "example": [
+            {
+              "kty": "RSA",
+              "alg": "RS256",
+              "use": "sig",
+              "kid": "40AC7D9B4FA317EE4B6D95BF430F322D28A97249",
+              "n": "oaIR6qZ6Bpa6bQmZftvnJTAJQO6zYNM6AgFsAMnKs3nOY8ash6l4P28Zj7b7Jd2ffkdb0X9/65D8RHVdHpWvc3HXdw3ae79CPIrm9mnuhbyXIvu1veGd2j47UyLkgwMw20UlUQKB1tEy2p1BpcH/srbAqNAL7Wqo+8UVxRJm5JMScxY3yHj+mBY2jEHCJg8rHaRF81GQky57lTQfisxIMa+DLIgFmXEEDlD/jxY+gWeRj8iHIx8bpAv3RSrNUFYokEazUnKP6ep2nc3r1oegCBW2wz85oCB252jpZEzRdmQz8VIKAWsM+LLuvIjpupTwz15zlx1rf9EhgF8RtHLrmQ==",
+              "e": "AQAB"
+            }
+          ],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Key"
+          }
+        }
+      },
+      "required": [
+        "keys"
+      ]
+    },
+    "Key": {
+      "title": "Key",
+      "example": {
+        "kty": "RSA",
+        "alg": "RS256",
+        "use": "sig",
+        "kid": "40AC7D9B4FA317EE4B6D95BF430F322D28A97249",
+        "n": "oaIR6qZ6Bpa6bQmZftvnJTAJQO6zYNM6AgFsAMnKs3nOY8ash6l4P28Zj7b7Jd2ffkdb0X9/65D8RHVdHpWvc3HXdw3ae79CPIrm9mnuhbyXIvu1veGd2j47UyLkgwMw20UlUQKB1tEy2p1BpcH/srbAqNAL7Wqo+8UVxRJm5JMScxY3yHj+mBY2jEHCJg8rHaRF81GQky57lTQfisxIMa+DLIgFmXEEDlD/jxY+gWeRj8iHIx8bpAv3RSrNUFYokEazUnKP6ep2nc3r1oegCBW2wz85oCB252jpZEzRdmQz8VIKAWsM+LLuvIjpupTwz15zlx1rf9EhgF8RtHLrmQ==",
+        "e": "AQAB"
+      },
+      "type": "object",
+      "properties": {
+        "kty": {
+          "description": "",
+          "example": "RSA",
+          "type": "string"
+        },
+        "alg": {
+          "description": "",
+          "example": "RS256",
+          "type": "string"
+        },
+        "use": {
+          "description": "",
+          "example": "sig",
+          "type": "string"
+        },
+        "kid": {
+          "description": "",
+          "example": "40AC7D9B4FA317EE4B6D95BF430F322D28A97249",
+          "type": "string"
+        },
+        "n": {
+          "description": "",
+          "example": "oaIR6qZ6Bpa6bQmZftvnJTAJQO6zYNM6AgFsAMnKs3nOY8ash6l4P28Zj7b7Jd2ffkdb0X9/65D8RHVdHpWvc3HXdw3ae79CPIrm9mnuhbyXIvu1veGd2j47UyLkgwMw20UlUQKB1tEy2p1BpcH/srbAqNAL7Wqo+8UVxRJm5JMScxY3yHj+mBY2jEHCJg8rHaRF81GQky57lTQfisxIMa+DLIgFmXEEDlD/jxY+gWeRj8iHIx8bpAv3RSrNUFYokEazUnKP6ep2nc3r1oegCBW2wz85oCB252jpZEzRdmQz8VIKAWsM+LLuvIjpupTwz15zlx1rf9EhgF8RtHLrmQ==",
+          "type": "string"
+        },
+        "e": {
+          "description": "",
+          "example": "AQAB",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kty",
+        "alg",
+        "use",
+        "kid",
+        "n",
+        "e"
+      ]
+    },
+    "GetCertificateKeysresponse": {
+      "title": "Get Certificate KeysResponse",
+      "example": {
+        "keys": [
+          {
+            "kty": "RSA",
+            "alg": "RS256",
+            "use": "sig",
+            "kid": "04D94987CF93F38EC40DDE89C66378BB75A7553C",
+            "n": "1yfl6Xgfb/Jq16RZziMKFsMgHpEu6sSkh+ziaDsWVqXxSarg7tGCobsIP4v0LVbCGyvTryyu1oBvVurC2PZgmHoZ1vZVVQL/LRWOPR9twvF6R8rs7SZZBAnv69ZW2Z1WGFyCXqzFd4MaHHALIlhbm3p/qhc2rY1nCLTlgwiyZMkauJnDAhvo+CfNHKAryt9YzlJCjOqo1Smu3hum8TSlxAuLCzmy3C5DMQfW0rqa0ir1Iq/6qJh35LoETCkDA65zMcT94pb1Gf6jnYv8p0jMi85TolcbYJ3JBgrRGhcmIV23FDIQBwSR6U+9Q6jt5HWBHst2SZ/bVnH7qSfNF7PT/w==",
+            "e": "AQAB"
+          },
+          {
+            "kty": "RSA",
+            "alg": "RS256",
+            "use": "sig",
+            "kid": "40AC7D9B4FA317EE4B6D95BF430F322D28A97249",
+            "n": "oaIR6qZ6Bpa6bQmZftvnJTAJQO6zYNM6AgFsAMnKs3nOY8ash6l4P28Zj7b7Jd2ffkdb0X9/65D8RHVdHpWvc3HXdw3ae79CPIrm9mnuhbyXIvu1veGd2j47UyLkgwMw20UlUQKB1tEy2p1BpcH/srbAqNAL7Wqo+8UVxRJm5JMScxY3yHj+mBY2jEHCJg8rHaRF81GQky57lTQfisxIMa+DLIgFmXEEDlD/jxY+gWeRj8iHIx8bpAv3RSrNUFYokEazUnKP6ep2nc3r1oegCBW2wz85oCB252jpZEzRdmQz8VIKAWsM+LLuvIjpupTwz15zlx1rf9EhgF8RtHLrmQ==",
+            "e": "AQAB"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "keys": {
+          "description": "",
+          "example": [
+            {
+              "kty": "RSA",
+              "alg": "RS256",
+              "use": "sig",
+              "kid": "04D94987CF93F38EC40DDE89C66378BB75A7553C",
+              "n": "1yfl6Xgfb/Jq16RZziMKFsMgHpEu6sSkh+ziaDsWVqXxSarg7tGCobsIP4v0LVbCGyvTryyu1oBvVurC2PZgmHoZ1vZVVQL/LRWOPR9twvF6R8rs7SZZBAnv69ZW2Z1WGFyCXqzFd4MaHHALIlhbm3p/qhc2rY1nCLTlgwiyZMkauJnDAhvo+CfNHKAryt9YzlJCjOqo1Smu3hum8TSlxAuLCzmy3C5DMQfW0rqa0ir1Iq/6qJh35LoETCkDA65zMcT94pb1Gf6jnYv8p0jMi85TolcbYJ3JBgrRGhcmIV23FDIQBwSR6U+9Q6jt5HWBHst2SZ/bVnH7qSfNF7PT/w==",
+              "e": "AQAB"
+            },
+            {
+              "kty": "RSA",
+              "alg": "RS256",
+              "use": "sig",
+              "kid": "40AC7D9B4FA317EE4B6D95BF430F322D28A97249",
+              "n": "oaIR6qZ6Bpa6bQmZftvnJTAJQO6zYNM6AgFsAMnKs3nOY8ash6l4P28Zj7b7Jd2ffkdb0X9/65D8RHVdHpWvc3HXdw3ae79CPIrm9mnuhbyXIvu1veGd2j47UyLkgwMw20UlUQKB1tEy2p1BpcH/srbAqNAL7Wqo+8UVxRJm5JMScxY3yHj+mBY2jEHCJg8rHaRF81GQky57lTQfisxIMa+DLIgFmXEEDlD/jxY+gWeRj8iHIx8bpAv3RSrNUFYokEazUnKP6ep2nc3r1oegCBW2wz85oCB252jpZEzRdmQz8VIKAWsM+LLuvIjpupTwz15zlx1rf9EhgF8RtHLrmQ==",
+              "e": "AQAB"
+            }
+          ],
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Key"
+          }
+        }
+      },
+      "required": [
+        "keys"
+      ]
+    },
+    "NotifyUserOfUsernamerequest": {
+      "title": "Notify user of usernameRequest",
+      "example": {
+        "emailaddress": "jrex@healthwise.org",
+        "clienttoken": "healthwise",
+        "clientalias": "healthwise",
+        "notificationtype": "username"
+      },
+      "type": "object",
+      "properties": {
+        "emailaddress": {
+          "description": "",
+          "example": "jrex@healthwise.org",
+          "type": "string"
+        },
+        "clienttoken": {
+          "description": "",
+          "example": "healthwise",
+          "type": "string"
+        },
+        "clientalias": {
+          "description": "",
+          "example": "healthwise",
+          "type": "string"
+        },
+        "notificationtype": {
+          "description": "",
+          "example": "username",
+          "type": "string"
+        }
+      },
+      "required": [
+        "emailaddress",
+        "clienttoken",
+        "clientalias",
+        "notificationtype"
+      ]
+    },
+    "ChangePasswordrequest": {
+      "title": "Change PasswordRequest",
+      "example": {
+        "userdata": "JcSnMgaUWqvxkopgZ5jSO%2bil9sTbhidpknNeevRWTzMPTL2y26%2bmLqL%2bZ5Fagxka0UrAyNa8RmK1R7j24NFFaTOPQrpo%2fgeiXQqFQ2puqXBgf%2bdrDM1cL6gjiqZzGc9ufcMLxJpuhm%2b0bkW0r1tZkzJYDgUGfUKoJWkxXni%2bid1k3S39eziTlwwRmvcaB0OrkhfwAEEHCyGMaSmd%2bh%2fuotjA50SUXGHLm1VQ%2b6zzfl29boARsp1HBUUjyhoVaFLLMj%2b%2fWavJyn3nyhmAEwTkACCXivp2k82AG0KPRCaZ%2fOGmlCNQtxhRuzDhQZ4cwepH7azakLrQFtrmORINgDFhgA%3d%3d",
+        "password": "Newpassword!3"
+      },
+      "type": "object",
+      "properties": {
+        "userdata": {
+          "description": "",
+          "example": "JcSnMgaUWqvxkopgZ5jSO%2bil9sTbhidpknNeevRWTzMPTL2y26%2bmLqL%2bZ5Fagxka0UrAyNa8RmK1R7j24NFFaTOPQrpo%2fgeiXQqFQ2puqXBgf%2bdrDM1cL6gjiqZzGc9ufcMLxJpuhm%2b0bkW0r1tZkzJYDgUGfUKoJWkxXni%2bid1k3S39eziTlwwRmvcaB0OrkhfwAEEHCyGMaSmd%2bh%2fuotjA50SUXGHLm1VQ%2b6zzfl29boARsp1HBUUjyhoVaFLLMj%2b%2fWavJyn3nyhmAEwTkACCXivp2k82AG0KPRCaZ%2fOGmlCNQtxhRuzDhQZ4cwepH7azakLrQFtrmORINgDFhgA%3d%3d",
+          "type": "string"
+        },
+        "password": {
+          "description": "",
+          "example": "Newpassword!3",
+          "type": "string"
+        }
+      },
+      "required": [
+        "userdata",
+        "password"
+      ]
+    },
+    "RequestAccessTokenerrorresponse": {
+      "title": "Request Access TokenErrorResponse",
+      "example": {
+        "error": "invalid_client",
+        "error_description": "A description of the error"
+      },
+      "type": "object",
+      "properties": {
+        "error": {
+          "description": "",
+          "example": "invalid_client",
+          "type": "string"
+        },
+        "error_description": {
+          "description": "",
+          "example": "A description of the error",
+          "type": "string"
+        }
+      },
+      "required": [
+        "error",
+        "error_description"
+      ]
+    },
+    "RequestAccessTokenresponse": {
+      "title": "Request Access TokenResponse",
+      "example": {
+        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjA0RDk0OTg3Q0Y5M0YzOEVDNDBEREU4OUM2NjM3OEJCNzVBNzU1M0MifQ.eyJzY29wZSI6ImF1dGhvcml6YXRpb24uYXBpIGNhbXBhaWduLmFwaSBjb25maWd1cmF0aW9uLmFwaSBjb25zdW1lci5hcGkgY29udGVudC5hcGkgZnVsZmlsbG1lbnQuYXBpIGhlYWx0aGNsb3VkaW50ZWdyYXRpb24uYXBpIGxpbmsuYXBpIHF1ZXN0aW9ubmFpcmUuYXBpIHNlYXJjaC5hcGkgdGF4b25vbXkuYXBpIiwiY2xpZW50X3Rva2VuIjoiaGVhbHRod2lzZS5nbGVuIiwiYXBwbGljYXRpb25faWQiOiJBUEkgU29sdXRpb24iLCJqdGkiOiI1ZTVkOGY2MC04NzY3LTRkNGYtYTMzNy1mMmRlYzVlMDQ5MmMiLCJpYXQiOiI2MzY1MjQyNDQ2MjM1MDQiLCJ0cmFja2luZ19pZCI6IjVlNWQ4ZjYwLTg3NjctNGQ0Zi1hMzM3LWYyZGVjNWUwNDkyYyIsImNvbnRlbnRfdmVyc2lvbiI6IjExLjUiLCJwcm9kdWN0IjoiIiwicm9sZXMiOiIiLCJ1cmxfYWxpYXMiOiIiLCJIV19DT05URU5UX0NPTkZJR19JRCI6ImhlYWx0aHdpc2UuZ2xlbi5yZWRveHVzZXIiLCJjb25zdW1lcl9pZCI6IioiLCJ0b2tlbl90eXBlIjoiQWNjZXNzIiwiaXNzIjoiaHR0cDovL2F1dGgudGVzdC5od2FwcHMubmV0IiwiYXVkIjoiYzkxOTg5MjRkNzdiNDY5N2I5NzAzZjdkZTJhNWYxMjciLCJleHAiOjE1MTY5MTQwNTcsIm5iZiI6MTUxNjgyNzY1Nywic3ViIjoiYzkxOTg5MjRkNzdiNDY5N2I5NzAzZjdkZTJhNWYxMjcifQ.pfdBguI3NNJbnaFNfJh53FYd1czBmBWGRe8LFZdLf4G9AEue5qttzRSZ8MyCWpTZ9xvNeLYtlmUlXmBtVXqj0W-1PZWFinlGBEdQOn4WAxRgBe5rOQfmkb_LDJEtCYvLaxDVho7X2V8lqyLoLlkW3iQcZh5spDRpT9BT3isoerfU8AO-wwiQLFj3vfWXEEdmJz5JjKSsyLVOVu0ypOqLS8MCKQSEqHvpr6CioCz_pG8NpDekC3fj3qflmHdFKsx85IVn82bvYaeLKO8Btho-5O0MC7TGhDblH8U5J3rdROU436LkQ2gS3rSbP2OOtB_8IvbCO1HJE4hzGQlp3GTudQ",
+        "token_type": "Bearer",
+        "expires_in": 86400
+      },
+      "type": "object",
+      "properties": {
+        "access_token": {
+          "description": "",
+          "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjA0RDk0OTg3Q0Y5M0YzOEVDNDBEREU4OUM2NjM3OEJCNzVBNzU1M0MifQ.eyJzY29wZSI6ImF1dGhvcml6YXRpb24uYXBpIGNhbXBhaWduLmFwaSBjb25maWd1cmF0aW9uLmFwaSBjb25zdW1lci5hcGkgY29udGVudC5hcGkgZnVsZmlsbG1lbnQuYXBpIGhlYWx0aGNsb3VkaW50ZWdyYXRpb24uYXBpIGxpbmsuYXBpIHF1ZXN0aW9ubmFpcmUuYXBpIHNlYXJjaC5hcGkgdGF4b25vbXkuYXBpIiwiY2xpZW50X3Rva2VuIjoiaGVhbHRod2lzZS5nbGVuIiwiYXBwbGljYXRpb25faWQiOiJBUEkgU29sdXRpb24iLCJqdGkiOiI1ZTVkOGY2MC04NzY3LTRkNGYtYTMzNy1mMmRlYzVlMDQ5MmMiLCJpYXQiOiI2MzY1MjQyNDQ2MjM1MDQiLCJ0cmFja2luZ19pZCI6IjVlNWQ4ZjYwLTg3NjctNGQ0Zi1hMzM3LWYyZGVjNWUwNDkyYyIsImNvbnRlbnRfdmVyc2lvbiI6IjExLjUiLCJwcm9kdWN0IjoiIiwicm9sZXMiOiIiLCJ1cmxfYWxpYXMiOiIiLCJIV19DT05URU5UX0NPTkZJR19JRCI6ImhlYWx0aHdpc2UuZ2xlbi5yZWRveHVzZXIiLCJjb25zdW1lcl9pZCI6IioiLCJ0b2tlbl90eXBlIjoiQWNjZXNzIiwiaXNzIjoiaHR0cDovL2F1dGgudGVzdC5od2FwcHMubmV0IiwiYXVkIjoiYzkxOTg5MjRkNzdiNDY5N2I5NzAzZjdkZTJhNWYxMjciLCJleHAiOjE1MTY5MTQwNTcsIm5iZiI6MTUxNjgyNzY1Nywic3ViIjoiYzkxOTg5MjRkNzdiNDY5N2I5NzAzZjdkZTJhNWYxMjcifQ.pfdBguI3NNJbnaFNfJh53FYd1czBmBWGRe8LFZdLf4G9AEue5qttzRSZ8MyCWpTZ9xvNeLYtlmUlXmBtVXqj0W-1PZWFinlGBEdQOn4WAxRgBe5rOQfmkb_LDJEtCYvLaxDVho7X2V8lqyLoLlkW3iQcZh5spDRpT9BT3isoerfU8AO-wwiQLFj3vfWXEEdmJz5JjKSsyLVOVu0ypOqLS8MCKQSEqHvpr6CioCz_pG8NpDekC3fj3qflmHdFKsx85IVn82bvYaeLKO8Btho-5O0MC7TGhDblH8U5J3rdROU436LkQ2gS3rSbP2OOtB_8IvbCO1HJE4hzGQlp3GTudQ",
+          "type": "string"
+        },
+        "token_type": {
+          "description": "",
+          "example": "Bearer",
+          "type": "string"
+        },
+        "expires_in": {
+          "description": "",
+          "example": 86400,
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "access_token",
+        "token_type",
+        "expires_in"
+      ]
+    }
+  }
+}
