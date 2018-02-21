@@ -529,8 +529,8 @@
     }
   },
   "definitions": {
-    "ListOrdersresponse": {
-      "title": "List ordersResponse",
+    "200Ok": {
+      "title": "200 OK",
       "example": {
         "status": 200,
         "versioning": {
@@ -994,8 +994,8 @@
         "href"
       ]
     },
-    "CreateOrdererrorresponse": {
-      "title": "Create OrderErrorResponse",
+    "400 bad request  wrong consumer": {
+      "title": "400 Bad Request - Wrong Consumer",
       "example": {
         "status": 400,
         "versioning": {
@@ -1074,8 +1074,8 @@
         "message"
       ]
     },
-    "CreateOrderresponse": {
-      "title": "Create OrderResponse",
+    "201Created": {
+      "title": "201 Created",
       "example": {
         "status": 201,
         "versioning": {
@@ -1435,8 +1435,8 @@
         "message"
       ]
     },
-    "ListBatchOrderserrorresponse": {
-      "title": "List Batch OrdersErrorResponse",
+    "500InternalServerError": {
+      "title": "500 Internal Server Error",
       "example": {
         "status": 500,
         "versioning": {
