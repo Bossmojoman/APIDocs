@@ -64,7 +64,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/GetCertificateresponse"
+              "$ref": "#/definitions/200Ok"
             },
             "examples": {
               "application/json": {
@@ -127,7 +127,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/GetCertificateKeysresponse"
+              "$ref": "#/definitions/200Ok"
             },
             "examples": {
               "application/json": {
@@ -562,7 +562,7 @@
           "200": {
             "description": "",
             "schema": {
-              "$ref": "#/definitions/RequestAccessTokenresponse"
+              "$ref": "#/definitions/200Ok7"
             },
             "examples": {
               "application/json": {
@@ -575,7 +575,7 @@
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "$ref": "#/definitions/RequestAccessTokenerrorresponse"
+              "$ref": "#/definitions/401Unauthorized"
             },
             "examples": {
               "application/json": {
@@ -637,8 +637,8 @@
     }
   },
   "definitions": {
-    "GetCertificateresponse": {
-      "title": "Get CertificateResponse",
+    "200Ok": {
+      "title": "200 OK",
       "example": {
         "keys": [
           {
@@ -727,60 +727,6 @@
         "e"
       ]
     },
-    "GetCertificateKeysresponse": {
-      "title": "Get Certificate KeysResponse",
-      "example": {
-        "keys": [
-          {
-            "kty": "RSA",
-            "alg": "RS256",
-            "use": "sig",
-            "kid": "04D94987CF93F38EC40DDE89C66378BB75A7553C",
-            "n": "1yfl6Xgfb/Jq16RZziMKFsMgHpEu6sSkh+ziaDsWVqXxSarg7tGCobsIP4v0LVbCGyvTryyu1oBvVurC2PZgmHoZ1vZVVQL/LRWOPR9twvF6R8rs7SZZBAnv69ZW2Z1WGFyCXqzFd4MaHHALIlhbm3p/qhc2rY1nCLTlgwiyZMkauJnDAhvo+CfNHKAryt9YzlJCjOqo1Smu3hum8TSlxAuLCzmy3C5DMQfW0rqa0ir1Iq/6qJh35LoETCkDA65zMcT94pb1Gf6jnYv8p0jMi85TolcbYJ3JBgrRGhcmIV23FDIQBwSR6U+9Q6jt5HWBHst2SZ/bVnH7qSfNF7PT/w==",
-            "e": "AQAB"
-          },
-          {
-            "kty": "RSA",
-            "alg": "RS256",
-            "use": "sig",
-            "kid": "40AC7D9B4FA317EE4B6D95BF430F322D28A97249",
-            "n": "oaIR6qZ6Bpa6bQmZftvnJTAJQO6zYNM6AgFsAMnKs3nOY8ash6l4P28Zj7b7Jd2ffkdb0X9/65D8RHVdHpWvc3HXdw3ae79CPIrm9mnuhbyXIvu1veGd2j47UyLkgwMw20UlUQKB1tEy2p1BpcH/srbAqNAL7Wqo+8UVxRJm5JMScxY3yHj+mBY2jEHCJg8rHaRF81GQky57lTQfisxIMa+DLIgFmXEEDlD/jxY+gWeRj8iHIx8bpAv3RSrNUFYokEazUnKP6ep2nc3r1oegCBW2wz85oCB252jpZEzRdmQz8VIKAWsM+LLuvIjpupTwz15zlx1rf9EhgF8RtHLrmQ==",
-            "e": "AQAB"
-          }
-        ]
-      },
-      "type": "object",
-      "properties": {
-        "keys": {
-          "description": "",
-          "example": [
-            {
-              "kty": "RSA",
-              "alg": "RS256",
-              "use": "sig",
-              "kid": "04D94987CF93F38EC40DDE89C66378BB75A7553C",
-              "n": "1yfl6Xgfb/Jq16RZziMKFsMgHpEu6sSkh+ziaDsWVqXxSarg7tGCobsIP4v0LVbCGyvTryyu1oBvVurC2PZgmHoZ1vZVVQL/LRWOPR9twvF6R8rs7SZZBAnv69ZW2Z1WGFyCXqzFd4MaHHALIlhbm3p/qhc2rY1nCLTlgwiyZMkauJnDAhvo+CfNHKAryt9YzlJCjOqo1Smu3hum8TSlxAuLCzmy3C5DMQfW0rqa0ir1Iq/6qJh35LoETCkDA65zMcT94pb1Gf6jnYv8p0jMi85TolcbYJ3JBgrRGhcmIV23FDIQBwSR6U+9Q6jt5HWBHst2SZ/bVnH7qSfNF7PT/w==",
-              "e": "AQAB"
-            },
-            {
-              "kty": "RSA",
-              "alg": "RS256",
-              "use": "sig",
-              "kid": "40AC7D9B4FA317EE4B6D95BF430F322D28A97249",
-              "n": "oaIR6qZ6Bpa6bQmZftvnJTAJQO6zYNM6AgFsAMnKs3nOY8ash6l4P28Zj7b7Jd2ffkdb0X9/65D8RHVdHpWvc3HXdw3ae79CPIrm9mnuhbyXIvu1veGd2j47UyLkgwMw20UlUQKB1tEy2p1BpcH/srbAqNAL7Wqo+8UVxRJm5JMScxY3yHj+mBY2jEHCJg8rHaRF81GQky57lTQfisxIMa+DLIgFmXEEDlD/jxY+gWeRj8iHIx8bpAv3RSrNUFYokEazUnKP6ep2nc3r1oegCBW2wz85oCB252jpZEzRdmQz8VIKAWsM+LLuvIjpupTwz15zlx1rf9EhgF8RtHLrmQ==",
-              "e": "AQAB"
-            }
-          ],
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Key"
-          }
-        }
-      },
-      "required": [
-        "keys"
-      ]
-    },
     "NotifyUserOfUsernamerequest": {
       "title": "Notify user of usernameRequest",
       "example": {
@@ -843,8 +789,8 @@
         "password"
       ]
     },
-    "RequestAccessTokenerrorresponse": {
-      "title": "Request Access TokenErrorResponse",
+    "401Unauthorized": {
+      "title": "401 Unauthorized",
       "example": {
         "error": "invalid_client",
         "error_description": "A description of the error"
@@ -867,8 +813,8 @@
         "error_description"
       ]
     },
-    "RequestAccessTokenresponse": {
-      "title": "Request Access TokenResponse",
+    "200Ok7": {
+      "title": "200 OK7",
       "example": {
         "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjA0RDk0OTg3Q0Y5M0YzOEVDNDBEREU4OUM2NjM3OEJCNzVBNzU1M0MifQ.eyJzY29wZSI6ImF1dGhvcml6YXRpb24uYXBpIGNhbXBhaWduLmFwaSBjb25maWd1cmF0aW9uLmFwaSBjb25zdW1lci5hcGkgY29udGVudC5hcGkgZnVsZmlsbG1lbnQuYXBpIGhlYWx0aGNsb3VkaW50ZWdyYXRpb24uYXBpIGxpbmsuYXBpIHF1ZXN0aW9ubmFpcmUuYXBpIHNlYXJjaC5hcGkgdGF4b25vbXkuYXBpIiwiY2xpZW50X3Rva2VuIjoiaGVhbHRod2lzZS5nbGVuIiwiYXBwbGljYXRpb25faWQiOiJBUEkgU29sdXRpb24iLCJqdGkiOiI1ZTVkOGY2MC04NzY3LTRkNGYtYTMzNy1mMmRlYzVlMDQ5MmMiLCJpYXQiOiI2MzY1MjQyNDQ2MjM1MDQiLCJ0cmFja2luZ19pZCI6IjVlNWQ4ZjYwLTg3NjctNGQ0Zi1hMzM3LWYyZGVjNWUwNDkyYyIsImNvbnRlbnRfdmVyc2lvbiI6IjExLjUiLCJwcm9kdWN0IjoiIiwicm9sZXMiOiIiLCJ1cmxfYWxpYXMiOiIiLCJIV19DT05URU5UX0NPTkZJR19JRCI6ImhlYWx0aHdpc2UuZ2xlbi5yZWRveHVzZXIiLCJjb25zdW1lcl9pZCI6IioiLCJ0b2tlbl90eXBlIjoiQWNjZXNzIiwiaXNzIjoiaHR0cDovL2F1dGgudGVzdC5od2FwcHMubmV0IiwiYXVkIjoiYzkxOTg5MjRkNzdiNDY5N2I5NzAzZjdkZTJhNWYxMjciLCJleHAiOjE1MTY5MTQwNTcsIm5iZiI6MTUxNjgyNzY1Nywic3ViIjoiYzkxOTg5MjRkNzdiNDY5N2I5NzAzZjdkZTJhNWYxMjcifQ.pfdBguI3NNJbnaFNfJh53FYd1czBmBWGRe8LFZdLf4G9AEue5qttzRSZ8MyCWpTZ9xvNeLYtlmUlXmBtVXqj0W-1PZWFinlGBEdQOn4WAxRgBe5rOQfmkb_LDJEtCYvLaxDVho7X2V8lqyLoLlkW3iQcZh5spDRpT9BT3isoerfU8AO-wwiQLFj3vfWXEEdmJz5JjKSsyLVOVu0ypOqLS8MCKQSEqHvpr6CioCz_pG8NpDekC3fj3qflmHdFKsx85IVn82bvYaeLKO8Btho-5O0MC7TGhDblH8U5J3rdROU436LkQ2gS3rSbP2OOtB_8IvbCO1HJE4hzGQlp3GTudQ",
         "token_type": "Bearer",
