@@ -39,13 +39,6 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
             "name": "kid",
             "in": "path",
             "required": true,
@@ -100,15 +93,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "",
@@ -139,15 +124,16 @@
             }
           }
         },
-        "security": [],
+        "security": [
+          {
+            "auth": []
+          }
+        ],
         "x-unitTests": [
           {
             "request": {
               "method": "GET",
-              "uri": "/certs",
-              "headers": {
-                "Authorization": "Bearer {{jwt}}"
-              }
+              "uri": "/certs"
             },
             "expectedResponse": {
               "x-allowExtraHeaders": true,
@@ -224,13 +210,6 @@
             "description": ""
           },
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
             "name": "Content-Type",
             "in": "header",
             "required": true,
@@ -265,15 +244,18 @@
             }
           }
         },
-        "security": [],
+        "security": [
+          {
+            "auth": []
+          }
+        ],
         "x-unitTests": [
           {
             "request": {
               "method": "POST",
               "uri": "/token",
               "headers": {
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Authorization": "Basic {{client.basic}}"
+                "Content-Type": "application/x-www-form-urlencoded"
               },
               "body": "grant_type=client_credentials&scope=*&client_token=healthwise"
             },
