@@ -60,13 +60,6 @@
             "type": "integer",
             "format": "int32",
             "description": ""
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -141,10 +134,7 @@
           {
             "request": {
               "method": "GET",
-              "uri": "/orders?consumerId={{consumer.id}}&skip=0&top=5",
-              "headers": {
-                "Authorization": "Bearer {{jwt}}"
-              }
+              "uri": "/orders?consumerId={{consumer.id}}&skip=0&top=5"
             },
             "expectedResponse": {
               "x-allowExtraHeaders": true,
@@ -203,13 +193,6 @@
             "schema": {
               "$ref": "#/definitions/CreateOrderrequest"
             }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -280,15 +263,18 @@
             }
           }
         },
-        "security": [],
+        "security": [
+          {
+            "auth": []
+          }
+        ],
         "x-unitTests": [
           {
             "request": {
               "method": "POST",
               "uri": "/orders",
               "headers": {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer {{jwt}}"
+                "Content-Type": "application/json"
               },
               "body": "{\"consumer\":{\"href\":\"{{consumer.api}}/v1/consumers/{{consumer.id}}\"},\"actions\":[{\"action\":\"send.email\",\"data\":{\"from\":\"Fulfillment Service <FulfillmentService@healthwise.org>\",\"subject\":\"This message was sent by Fulfillment Api\",\"body\":\"<div>{{headinggroup}}</div><p>{{headingParagraph}}</p><p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>\",\"headingGroup\":\"TEST HEADING Outpatient Care Clinic\",\"headingParagraph\":\"...Clever catchphrase\"}}],\"deliverOn\":\"7/5/2017 8:59:01 PM\",\"message\":{\"note\":\"Good talking to you today {{consumer.name.given}}.\",\"items\":[{\"href\":\"{{content.api}}/v1/content/abq6317/en-us/\"}]}}"
             },
@@ -344,13 +330,6 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
             "name": "orderid",
             "in": "path",
             "required": true,
@@ -363,7 +342,11 @@
             "description": ""
           }
         },
-        "security": [],
+        "security": [
+          {
+            "auth": []
+          }
+        ],
         "x-unitTests": [],
         "x-operation-settings": {
           "CollectParameters": false,
@@ -386,13 +369,6 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
             "name": "orderid",
             "in": "path",
             "required": true,
@@ -405,7 +381,11 @@
             "description": ""
           }
         },
-        "security": [],
+        "security": [
+          {
+            "auth": []
+          }
+        ],
         "x-unitTests": [],
         "x-operation-settings": {
           "CollectParameters": false,
@@ -442,13 +422,6 @@
             "type": "integer",
             "format": "int32",
             "description": ""
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -477,15 +450,16 @@
             }
           }
         },
-        "security": [],
+        "security": [
+          {
+            "auth": []
+          }
+        ],
         "x-unitTests": [
           {
             "request": {
               "method": "GET",
-              "uri": "/batchOrders?skip=0&top=5",
-              "headers": {
-                "Authorization": "Bearer {{jwt}}"
-              }
+              "uri": "/batchOrders?skip=0&top=5"
             },
             "expectedResponse": {
               "x-allowExtraHeaders": true,
@@ -527,13 +501,6 @@
             "schema": {
               "$ref": "#/definitions/CreateBatchOrderrequest"
             }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -541,15 +508,18 @@
             "description": ""
           }
         },
-        "security": [],
+        "security": [
+          {
+            "auth": []
+          }
+        ],
         "x-unitTests": [
           {
             "request": {
               "method": "POST",
               "uri": "/batchOrders",
               "headers": {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer {{jwt}}"
+                "Content-Type": "application/json"
               },
               "body": "{\"consumers\":[{\"href\":\"{{consumer.api}}/v1/consumers/{{consumer.id}}\"},{\"href\":\"{{consumer.api}}/v1/consumers/{{consumer.id.2}}\"}],\"actions\":[{\"action\":\"send.email\",\"data\":{\"from\":\"Fulfillment Service <FulfillmentService@healthwise.org>\",\"subject\":\"This message was sent by Fulfillment Api\",\"body\":\"<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>\"}}],\"message\":{\"note\":\"Good talking to you today {{consumer.name.given}}.\",\"items\":[{\"href\":\"{{content.api}}/v1/content/aa113121/en-us/\"}]}}"
             },
@@ -595,13 +565,6 @@
             "description": ""
           },
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
             "name": "orderid",
             "in": "path",
             "required": true,
@@ -614,7 +577,11 @@
             "description": ""
           }
         },
-        "security": [],
+        "security": [
+          {
+            "auth": []
+          }
+        ],
         "x-unitTests": [],
         "x-operation-settings": {
           "CollectParameters": false,
@@ -637,13 +604,6 @@
         ],
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
             "name": "filename",
             "in": "path",
             "required": true,
@@ -656,7 +616,11 @@
             "description": ""
           }
         },
-        "security": [],
+        "security": [
+          {
+            "auth": []
+          }
+        ],
         "x-unitTests": [],
         "x-operation-settings": {
           "CollectParameters": false,
