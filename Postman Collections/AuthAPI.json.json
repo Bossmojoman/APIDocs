@@ -6,12 +6,12 @@
     "description": "The Healthwise Authorization API controls access to the various Healthwise services using the OAUTH 2.0 protocol."
   },
   "host": "example.com",
-  "basePath": "/oauth2",
+  "basePath": "/",
   "securityDefinitions": {
     "auth": {
       "type": "oauth2",
       "flow": "implicit",
-      "authorizationUrl": "http://example.com/oauth2",
+      "authorizationUrl": "http://example.com",
       "scopes": {},
       "x-skip-client-authentication": false
     }
@@ -26,14 +26,14 @@
     "application/json"
   ],
   "paths": {
-    "/certs/{kid}": {
+    "/oauth2/certs/{kid}": {
       "get": {
         "description": "Returns certificate validation information based on a kid value",
         "summary": "Get Certificate",
         "tags": [
           "Misc"
         ],
-        "operationId": "CertsByKidGet",
+        "operationId": "Oauth2CertsByKidGet",
         "produces": [
           "application/json"
         ],
@@ -82,14 +82,14 @@
         }
       }
     },
-    "/certs": {
+    "/oauth2/certs": {
       "get": {
         "description": "Returns security certificate information allowing validation of JWTS",
         "summary": "Get Certificate Keys",
         "tags": [
           "Misc"
         ],
-        "operationId": "CertsGet",
+        "operationId": "Oauth2CertsGet",
         "produces": [
           "application/json"
         ],
@@ -133,7 +133,7 @@
           {
             "request": {
               "method": "GET",
-              "uri": "/certs"
+              "uri": "/oauth2/certs"
             },
             "expectedResponse": {
               "x-allowExtraHeaders": true,
@@ -173,14 +173,14 @@
         }
       }
     },
-    "/token": {
+    "/oauth2/token": {
       "post": {
         "description": "## TODO: Evaluate that we have an endpoint that has options not available to clients that utilizes security through obscurity. Remeber \"Security is a journey, not a destination\"\n\nCreates an access token from the provided credentials. These tokens are used to grant access to Healthwise APIs and the access token must be provided with each API request.\nA client id and client secret must be provided in the request for an access token. The client id and client secret are provided by Healthwise for accessing the APIs.\n\n\n## Data Parameters\n\n| Parameter  | Type  | Description  | Allowed Values |\n|---|---|---|---|\n| grant\\_type  | string  | [Required] The type of grant allowed  ||\n| scope  | string  | [Required] A client id has access to one or more scopes which correspond to different Healthwise APIs. If no scope is provided in a request for an access token, the access token will authorize access to all scopes for that client id. If one or more scopes are provided in the request, the access token will only be usable for those scopes. Available scopes depend on the client id. To determine which scopes are available for a given client id, the /register/{client_id} endpoint can be used. Examples of scopes include  |configuration.api consumer.api content.api fulfillment.api link.api packaging.api ccf.api|\n| product  | string  | [Optional] The space separated list of products that are used to request a list of scopes for that product. If both a scope and a product are requested the union of the scopes will be used.  ||\n| expires\\_in  |  string  | [Optional] Time in seconds token will be valid. Maximum value: 86400  ||\n| content\\_configuration\\_id  |  string  | [Optional] Content Configuration for client  ||\n| reference\\_number  |  string  | <TODO: I think this is a settable flag> ||",
         "summary": "Request Access Token",
         "tags": [
           "Misc"
         ],
-        "operationId": "TokenPost",
+        "operationId": "Oauth2TokenPost",
         "produces": [
           "application/json"
         ],
@@ -253,7 +253,7 @@
           {
             "request": {
               "method": "POST",
-              "uri": "/token",
+              "uri": "/oauth2/token",
               "headers": {
                 "Content-Type": "application/x-www-form-urlencoded"
               },
@@ -287,6 +287,77 @@
             "x-testEnabled": true,
             "x-testName": "Request Access Token",
             "x-testDescription": "## TODO: Evaluate that we have an endpoint that has options not available to clients that utilizes security through obscurity. Remeber \"Security is a journey, not a destination\"\n\nCreates an access token from the provided credentials. These tokens are used to grant access to Healthwise APIs and the access token must be provided with each API request.\nA client id and client secret must be provided in the request for an access token. The client id and client secret are provided by Healthwise for accessing the APIs.\n\n\n## Data Parameters\n\n| Parameter  | Type  | Description  | Allowed Values |\n|---|---|---|---|\n| grant\\_type  | string  | [Required] The type of grant allowed  ||\n| scope  | string  | [Required] A client id has access to one or more scopes which correspond to different Healthwise APIs. If no scope is provided in a request for an access token, the access token will authorize access to all scopes for that client id. If one or more scopes are provided in the request, the access token will only be usable for those scopes. Available scopes depend on the client id. To determine which scopes are available for a given client id, the /register/{client_id} endpoint can be used. Examples of scopes include  |configuration.api consumer.api content.api fulfillment.api link.api packaging.api ccf.api|\n| product  | string  | [Optional] The space separated list of products that are used to request a list of scopes for that product. If both a scope and a product are requested the union of the scopes will be used.  ||\n| expires\\_in  |  string  | [Optional] Time in seconds token will be valid. Maximum value: 86400  ||\n| content\\_configuration\\_id  |  string  | [Optional] Content Configuration for client  ||\n| reference\\_number  |  string  | <TODO: I think this is a settable flag> ||"
+          }
+        ],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/v1/oauth2/token": {
+      "post": {
+        "description": "TODO: Add Description",
+        "summary": "service token exchange",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "V1Oauth2TokenPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ServiceTokenExchangerequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ],
+        "x-unitTests": [
+          {
+            "request": {
+              "method": "POST",
+              "uri": "/v1/oauth2/token",
+              "headers": {
+                "Content-Type": "application/json"
+              },
+              "body": "{\"grant_type\":\"client_credentials\",\"scope\":\"service\",\"jwt\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjZBMzA5RjMxMkQ5N0I1NEQ0Q0JCNEVFREQ4RjM4OEExNEE1RDA4QjUifQ.eyJzY29wZSI6InNlcnZpY2UiLCJjbGllbnRfdG9rZW4iOiJoZWFsdGh3aXNlLnNlcnZpY2UiLCJhcHBsaWNhdGlvbl9pZCI6IkFQSSBTb2x1dGlvbiIsImp0aSI6IjExYmU5Yzk5LWRhMmItNDQ4YS04ZDhlLTNkOGYyYzEzZTNjMSIsImlhdCI6IjYzNjYwMzYwNTA3OTE0NSIsInRyYWNraW5nX2lkIjoiMTFiZTljOTktZGEyYi00NDhhLThkOGUtM2Q4ZjJjMTNlM2MxIiwiY29udGVudF92ZXJzaW9uIjoiMTEuNyIsInByb2R1Y3QiOiIiLCJyb2xlcyI6IiIsInVybF9hbGlhcyI6IiIsImNvbnN1bWVyX2lkIjoiKiIsInRva2VuX3R5cGUiOiJBY2Nlc3MiLCJpc3MiOiJodHRwOi8vYXV0aC50ZXN0Lmh3YXBwcy5uZXQiLCJhdWQiOiI4OTAwYjU4YjhmYmY0YzQ2ODk5YjEzZmE0YzNhYzQ5YSIsImV4cCI6MTUyNDg1MDEwMiwibmJmIjoxNTI0NzYzNzAyLCJzdWIiOiI4OTAwYjU4YjhmYmY0YzQ2ODk5YjEzZmE0YzNhYzQ5YSJ9.eamTq210CvLE9BzYgWtitIfoGH5ofuiU0VPWVXtK2hmU-_Px6HTn-luRX1UsU4REKLxSqchfvjc75HrO3WE2csq8u4FJHHeRUd2Kt-C-pj0job02mzkdJjhLcWKzO-k-zp8TX2zDmuJsJ2RrENPDOeXHSinw0Mu6bZnDNq8WvjVXfpYc4ewQwaY4cUY775Do-e6YSpPYov0Yq2DiqvOqqP-6-OeT_u8XzYsUtPMdehiKkji5QE49aAcT6LqJwmF_gztb5DnkCsnV6wS-fV1WTmMfMowV63LWv6bdHa6zvGBJFc6qtbTLUSqFa4TRzj2gyEFwETLyD72MtsdJq16xmA\"}"
+            },
+            "expectedResponse": {
+              "x-allowExtraHeaders": true,
+              "x-bodyMatchMode": "NONE",
+              "x-arrayOrderedMatching": false,
+              "x-arrayCheckCount": false,
+              "x-matchResponseSchema": true,
+              "headers": {}
+            },
+            "x-testShouldPass": true,
+            "x-testEnabled": true,
+            "x-testName": "service token exchange",
+            "x-testDescription": "TODO: Add Description"
           }
         ],
         "x-operation-settings": {
@@ -443,6 +514,37 @@
         "access_token",
         "token_type",
         "expires_in"
+      ]
+    },
+    "ServiceTokenExchangerequest": {
+      "title": "service token exchangeRequest",
+      "example": {
+        "grant_type": "client_credentials",
+        "scope": "service",
+        "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjZBMzA5RjMxMkQ5N0I1NEQ0Q0JCNEVFREQ4RjM4OEExNEE1RDA4QjUifQ.eyJzY29wZSI6InNlcnZpY2UiLCJjbGllbnRfdG9rZW4iOiJoZWFsdGh3aXNlLnNlcnZpY2UiLCJhcHBsaWNhdGlvbl9pZCI6IkFQSSBTb2x1dGlvbiIsImp0aSI6IjExYmU5Yzk5LWRhMmItNDQ4YS04ZDhlLTNkOGYyYzEzZTNjMSIsImlhdCI6IjYzNjYwMzYwNTA3OTE0NSIsInRyYWNraW5nX2lkIjoiMTFiZTljOTktZGEyYi00NDhhLThkOGUtM2Q4ZjJjMTNlM2MxIiwiY29udGVudF92ZXJzaW9uIjoiMTEuNyIsInByb2R1Y3QiOiIiLCJyb2xlcyI6IiIsInVybF9hbGlhcyI6IiIsImNvbnN1bWVyX2lkIjoiKiIsInRva2VuX3R5cGUiOiJBY2Nlc3MiLCJpc3MiOiJodHRwOi8vYXV0aC50ZXN0Lmh3YXBwcy5uZXQiLCJhdWQiOiI4OTAwYjU4YjhmYmY0YzQ2ODk5YjEzZmE0YzNhYzQ5YSIsImV4cCI6MTUyNDg1MDEwMiwibmJmIjoxNTI0NzYzNzAyLCJzdWIiOiI4OTAwYjU4YjhmYmY0YzQ2ODk5YjEzZmE0YzNhYzQ5YSJ9.eamTq210CvLE9BzYgWtitIfoGH5ofuiU0VPWVXtK2hmU-_Px6HTn-luRX1UsU4REKLxSqchfvjc75HrO3WE2csq8u4FJHHeRUd2Kt-C-pj0job02mzkdJjhLcWKzO-k-zp8TX2zDmuJsJ2RrENPDOeXHSinw0Mu6bZnDNq8WvjVXfpYc4ewQwaY4cUY775Do-e6YSpPYov0Yq2DiqvOqqP-6-OeT_u8XzYsUtPMdehiKkji5QE49aAcT6LqJwmF_gztb5DnkCsnV6wS-fV1WTmMfMowV63LWv6bdHa6zvGBJFc6qtbTLUSqFa4TRzj2gyEFwETLyD72MtsdJq16xmA"
+      },
+      "type": "object",
+      "properties": {
+        "grant_type": {
+          "description": "",
+          "example": "client_credentials",
+          "type": "string"
+        },
+        "scope": {
+          "description": "",
+          "example": "service",
+          "type": "string"
+        },
+        "jwt": {
+          "description": "",
+          "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjZBMzA5RjMxMkQ5N0I1NEQ0Q0JCNEVFREQ4RjM4OEExNEE1RDA4QjUifQ.eyJzY29wZSI6InNlcnZpY2UiLCJjbGllbnRfdG9rZW4iOiJoZWFsdGh3aXNlLnNlcnZpY2UiLCJhcHBsaWNhdGlvbl9pZCI6IkFQSSBTb2x1dGlvbiIsImp0aSI6IjExYmU5Yzk5LWRhMmItNDQ4YS04ZDhlLTNkOGYyYzEzZTNjMSIsImlhdCI6IjYzNjYwMzYwNTA3OTE0NSIsInRyYWNraW5nX2lkIjoiMTFiZTljOTktZGEyYi00NDhhLThkOGUtM2Q4ZjJjMTNlM2MxIiwiY29udGVudF92ZXJzaW9uIjoiMTEuNyIsInByb2R1Y3QiOiIiLCJyb2xlcyI6IiIsInVybF9hbGlhcyI6IiIsImNvbnN1bWVyX2lkIjoiKiIsInRva2VuX3R5cGUiOiJBY2Nlc3MiLCJpc3MiOiJodHRwOi8vYXV0aC50ZXN0Lmh3YXBwcy5uZXQiLCJhdWQiOiI4OTAwYjU4YjhmYmY0YzQ2ODk5YjEzZmE0YzNhYzQ5YSIsImV4cCI6MTUyNDg1MDEwMiwibmJmIjoxNTI0NzYzNzAyLCJzdWIiOiI4OTAwYjU4YjhmYmY0YzQ2ODk5YjEzZmE0YzNhYzQ5YSJ9.eamTq210CvLE9BzYgWtitIfoGH5ofuiU0VPWVXtK2hmU-_Px6HTn-luRX1UsU4REKLxSqchfvjc75HrO3WE2csq8u4FJHHeRUd2Kt-C-pj0job02mzkdJjhLcWKzO-k-zp8TX2zDmuJsJ2RrENPDOeXHSinw0Mu6bZnDNq8WvjVXfpYc4ewQwaY4cUY775Do-e6YSpPYov0Yq2DiqvOqqP-6-OeT_u8XzYsUtPMdehiKkji5QE49aAcT6LqJwmF_gztb5DnkCsnV6wS-fV1WTmMfMowV63LWv6bdHa6zvGBJFc6qtbTLUSqFa4TRzj2gyEFwETLyD72MtsdJq16xmA",
+          "type": "string"
+        }
+      },
+      "required": [
+        "grant_type",
+        "scope",
+        "jwt"
       ]
     }
   }
