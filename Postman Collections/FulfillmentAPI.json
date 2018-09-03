@@ -1,1588 +1,774 @@
 {
-  "swagger": "2.0",
   "info": {
-    "version": "1.0",
-    "title": "API Documentation - Fulfillment API",
-    "description": "The Fulfillment API handles the fulfillment of patient orders."
+    "_postman_id": "249837-c253a5cf-a246-5913-e25c-2dae53a8d836",
+    "name": "API Documentation - Fulfillment API",
+    "description": "The Fulfillment API handles the fulfillment of patient orders.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
-  "host": "example.com",
-  "basePath": "/",
-  "securityDefinitions": {
-    "auth": {
-      "type": "oauth2",
-      "flow": "implicit",
-      "authorizationUrl": "http://example.com",
-      "scopes": {},
-      "x-skip-client-authentication": false
-    }
-  },
-  "schemes": [
-    "http"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "paths": {
-    "/orders": {
-      "get": {
-        "description": "Gets a list of orders with their current status",
-        "summary": "List orders",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "OrdersGet",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "consumerId",
-            "in": "query",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "skip",
-            "in": "query",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
-            "description": ""
-          },
-          {
-            "name": "top",
-            "in": "query",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/200Ok"
-            },
-            "examples": {
-              "application/json": {
-                "status": 200,
-                "versioning": {
-                  "X-HW-Version": "1"
-                },
-                "links": {
-                  "self": "https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3&skip=0&top=5",
-                  "next": "https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3&skip=5&top=5"
-                },
-                "schema": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.items.json",
-                "items": [
-                  {
-                    "href": "https://fulfillment.test.hwapps.net/orders/f70eeb80-53a5-41a2-ac90-645f96502f13",
-                    "data": {
-                      "orderStatus": "completed",
-                      "lastChanged": "2018-02-13T04:05:20"
-                    }
-                  },
-                  {
-                    "href": "https://fulfillment.test.hwapps.net/orders/ee2b1893-07e0-4801-a39b-5e1b47f028bf",
-                    "data": {
-                      "orderStatus": "completed",
-                      "lastChanged": "2018-02-13T04:04:49"
-                    }
-                  },
-                  {
-                    "href": "https://fulfillment.test.hwapps.net/orders/907aeaec-2b18-4f53-952d-aebac01c5cb3",
-                    "data": {
-                      "orderStatus": "completed",
-                      "lastChanged": "2018-02-13T04:04:24"
-                    }
-                  },
-                  {
-                    "href": "https://fulfillment.test.hwapps.net/orders/53fef698-51c8-4f09-8173-3349ff9c2505",
-                    "data": {
-                      "orderStatus": "completed",
-                      "lastChanged": "2018-02-13T04:03:54"
-                    }
-                  },
-                  {
-                    "href": "https://fulfillment.test.hwapps.net/orders/835fdacf-399b-454f-b020-5ae05d33bf84",
-                    "data": {
-                      "orderStatus": "completed",
-                      "lastChanged": "2018-02-13T03:55:46"
-                    }
-                  }
-                ],
-                "pagination": {
-                  "count": 8,
-                  "top": 5,
-                  "skip": 0
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ],
-        "x-unitTests": [
-          {
-            "request": {
-              "method": "GET",
-              "uri": "/orders?consumerId={{consumer.id}}&skip=0&top=5"
-            },
-            "expectedResponse": {
-              "x-allowExtraHeaders": true,
-              "x-bodyMatchMode": "RAW",
-              "x-arrayOrderedMatching": false,
-              "x-arrayCheckCount": false,
-              "x-matchResponseSchema": true,
-              "headers": {
-                "Cache-Control": "no-cache,no-cache, max-age=0, no-store, must-revalidate, private",
-                "Content-Length": "1251",
-                "Content-Type": "application/json; charset=utf-8",
-                "Date": "Mon, 12 Feb 2018 21:22:21 GMT",
-                "Expires": "-1",
-                "Pragma": "no-cache,no-cache",
-                "Server": "Microsoft-IIS/10.0",
-                "X-AspNet-Version": "4.0.30319",
-                "X-Content-Type-Options": "nosniff",
-                "X-Frame-Options": "SAMEORIGIN",
-                "X-HW-Version": "1; equivalent-to=1",
-                "X-Healthwise-Software-Version": "1.2.79.1",
-                "X-Powered-By": "ASP.NET",
-                "X-XSS-Protection": "1",
-                "X-hw-request-id": "c44f9138-0b71-4205-a6e8-d98753c9343d"
-              },
-              "body": "{\"status\":200,\"versioning\":{\"X-HW-Version\":\"1\"},\"links\":{\"self\":\"https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3&skip=0&top=5\",\"next\":\"https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3&skip=5&top=5\"},\"schema\":\"https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.items.json\",\"items\":[{\"href\":\"https://fulfillment.test.hwapps.net/orders/f70eeb80-53a5-41a2-ac90-645f96502f13\",\"data\":{\"orderStatus\":\"completed\",\"lastChanged\":\"2018-02-13T04:05:20\"}},{\"href\":\"https://fulfillment.test.hwapps.net/orders/ee2b1893-07e0-4801-a39b-5e1b47f028bf\",\"data\":{\"orderStatus\":\"completed\",\"lastChanged\":\"2018-02-13T04:04:49\"}},{\"href\":\"https://fulfillment.test.hwapps.net/orders/907aeaec-2b18-4f53-952d-aebac01c5cb3\",\"data\":{\"orderStatus\":\"completed\",\"lastChanged\":\"2018-02-13T04:04:24\"}},{\"href\":\"https://fulfillment.test.hwapps.net/orders/53fef698-51c8-4f09-8173-3349ff9c2505\",\"data\":{\"orderStatus\":\"completed\",\"lastChanged\":\"2018-02-13T04:03:54\"}},{\"href\":\"https://fulfillment.test.hwapps.net/orders/835fdacf-399b-454f-b020-5ae05d33bf84\",\"data\":{\"orderStatus\":\"completed\",\"lastChanged\":\"2018-02-13T03:55:46\"}}],\"pagination\":{\"count\":8,\"top\":5,\"skip\":0}}"
-            },
-            "x-testShouldPass": true,
-            "x-testEnabled": true,
-            "x-testName": "List orders",
-            "x-testDescription": "Gets a list of orders with their current status"
-          }
-        ],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
-      },
-      "post": {
-        "description": "Creates an order for content and requests an email be sent to the consumer with a link to the content.\r\n\r\n\r\n## Data Parameters\r\n| Parameter  | Type  | Description  | Allowed Values |\r\n|---|---|---|---|\r\n|consumer|object:Consumer|The consumer for which this order is being created||\r\n|actions|array:object:Action|The delivery action(s) to take upon successful processing||\r\n|deliverOn|datetime|[optional] date on which to process order.  If omitted, order will be be processed immediately||\r\n|message|object:Message|Message and item meta data ||\r\n|context|dictionary:object|[Optional] ||\r\n|tags|dictionary:object|[Optional] Meta-data items not used in processing that will be stored with the order ||\r\n|assessment|object:Assessment|[Optional] ||\r\n|survey|object:Survey|[Optional][Deprecated] left for backwards compatibility, surveys no longer supported ||\r\n|deliverOn|datetime|[Optional] date on which to process the order||",
-        "summary": "Create Order",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "OrdersPost",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/CreateOrderrequest"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/201Created"
-            },
-            "examples": {
-              "application/json": {
-                "status": 201,
-                "versioning": {
-                  "X-HW-Version": "1"
-                },
-                "links": {
-                  "self": "https://fulfillment.test.hwapps.net/orders/8fc27f63-9dc6-4751-b7d0-b6b20a5e7885"
-                },
-                "schema": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.item.json",
-                "data": {
-                  "actions": [
-                    {
-                      "action": "send.email",
-                      "data": {
-                        "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-                        "subject": "This message was sent by Fulfillment Api",
-                        "body": "<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>"
-                      }
-                    }
-                  ],
-                  "message": {
-                    "note": "Good talking to you today {{consumer.name.given}}.",
-                    "items": [
-                      {
-                        "href": "https://content.test.hwapps.net/v1/content/abq6317/en-us/",
-                        "presurveyhref": "https://content.test.hwapps.net/v1/content/somepresurvey/en-us",
-                        "postsurveyhref": "https://content.test.hwapps.net/v1/content/somepostsurvey/en-us"
-                      }
-                    ]
-                  },
-                  "id": "8fc27f63-9dc6-4751-b7d0-b6b20a5e7885",
-                  "orderState": {
-                    "status": "Delayed"
-                  },
-                  "deliverOn": "2017-07-05T20:59:01"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/definitions/400 bad request  wrong consumer"
-            },
-            "examples": {
-              "application/json": {
-                "status": 400,
-                "versioning": {
-                  "X-HW-Version": "1"
-                },
-                "links": {
-                  "self": "https://fulfillment.test.hwapps.net/orders"
-                },
-                "schema": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.error.json",
-                "error": {
-                  "message": "The consumer identified does not exist. Please create a consumer prior to creating an order."
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ],
-        "x-unitTests": [
-          {
-            "request": {
-              "method": "POST",
-              "uri": "/orders",
-              "headers": {
-                "Content-Type": "application/json"
-              },
-              "body": "{\"consumer\":{\"href\":\"{{consumer.api}}/v1/consumers/{{consumer.id}}\"},\"actions\":[{\"action\":\"send.email\",\"data\":{\"from\":\"Fulfillment Service <FulfillmentService@healthwise.org>\",\"subject\":\"This message was sent by Fulfillment Api\",\"body\":\"<div>{{headinggroup}}</div><p>{{headingParagraph}}</p><p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>\",\"headingGroup\":\"TEST HEADING Outpatient Care Clinic\",\"headingParagraph\":\"...Clever catchphrase\"}}],\"deliverOn\":\"7/5/2017 8:59:01 PM\",\"message\":{\"note\":\"Good talking to you today {{consumer.name.given}}.\",\"items\":[{\"href\":\"{{content.api}}/v1/content/abq6317/en-us/\"}]}}"
-            },
-            "expectedResponse": {
-              "x-allowExtraHeaders": true,
-              "x-bodyMatchMode": "RAW",
-              "x-arrayOrderedMatching": false,
-              "x-arrayCheckCount": false,
-              "x-matchResponseSchema": true,
-              "headers": {
-                "Cache-Control": "no-cache,no-cache, max-age=0, no-store, must-revalidate, private",
-                "Content-Length": "1201",
-                "Content-Type": "application/json; charset=utf-8",
-                "Date": "Mon, 12 Feb 2018 15:37:50 GMT",
-                "Expires": "-1",
-                "Pragma": "no-cache,no-cache",
-                "Server": "Microsoft-IIS/10.0",
-                "X-AspNet-Version": "4.0.30319",
-                "X-Content-Type-Options": "nosniff",
-                "X-Frame-Options": "SAMEORIGIN",
-                "X-HW-Version": "1; equivalent-to=1",
-                "X-Healthwise-Software-Version": "1.2.79.1",
-                "X-Powered-By": "ASP.NET",
-                "X-XSS-Protection": "1",
-                "X-hw-request-id": "14182da4-41b0-482f-8f1c-00696ffd48e6"
-              },
-              "body": "{\"status\":201,\"versioning\":{\"X-HW-Version\":\"1\"},\"links\":{\"self\":\"https://fulfillment.test.hwapps.net/orders/8fc27f63-9dc6-4751-b7d0-b6b20a5e7885\"},\"schema\":\"https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.item.json\",\"data\":{\"actions\":[{\"action\":\"send.email\",\"data\":{\"from\":\"Fulfillment Service <FulfillmentService@healthwise.org>\",\"subject\":\"This message was sent by Fulfillment Api\",\"body\":\"<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>\"}}],\"message\":{\"note\":\"Good talking to you today {{consumer.name.given}}.\",\"items\":[{\"href\":\"https://content.test.hwapps.net/v1/content/abq6317/en-us/\",\"presurveyhref\":\"https://content.test.hwapps.net/v1/content/somepresurvey/en-us\",\"postsurveyhref\":\"https://content.test.hwapps.net/v1/content/somepostsurvey/en-us\"}]},\"id\":\"8fc27f63-9dc6-4751-b7d0-b6b20a5e7885\",\"orderState\":{\"status\":\"Delayed\"},\"deliverOn\":\"2017-07-05T20:59:01\"}}"
-            },
-            "x-testShouldPass": true,
-            "x-testEnabled": true,
-            "x-testName": "Create Order",
-            "x-testDescription": "Creates an order for content and requests an email be sent to the consumer with a link to the content.\r\n\r\n\r\n## Data Parameters\r\n| Parameter  | Type  | Description  | Allowed Values |\r\n|---|---|---|---|\r\n|consumer|object:Consumer|The consumer for which this order is being created||\r\n|actions|array:object:Action|The delivery action(s) to take upon successful processing||\r\n|deliverOn|datetime|[optional] date on which to process order.  If omitted, order will be be processed immediately||\r\n|message|object:Message|Message and item meta data ||\r\n|context|dictionary:object|[Optional] ||\r\n|tags|dictionary:object|[Optional] Meta-data items not used in processing that will be stored with the order ||\r\n|assessment|object:Assessment|[Optional] ||\r\n|survey|object:Survey|[Optional][Deprecated] left for backwards compatibility, surveys no longer supported ||\r\n|deliverOn|datetime|[Optional] date on which to process the order||"
-          }
-        ],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
-      }
+  "item": [
+    {
+      "_postman_id": "249837-6c658e34-9abb-4d13-92ff-f403c2048907",
+      "name": "OEmbed Workflow",
+      "description": "",
+      "item": []
     },
-    "/orders/{orderid}": {
-      "get": {
-        "description": "Retrieves a single order from the system",
-        "summary": "Get Order",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "OrdersByOrderidGet",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
+    {
+      "_postman_id": "249837-f44d2600-a752-4fd1-d2fc-9919848c1bf0",
+      "name": "List orders",
+      "request": {
+        "method": "GET",
+        "header": [
           {
-            "name": "orderid",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": ""
+            "key": "Authorization",
+            "value": "Bearer {{jwt}}",
+            "description": "OAuth 2.0 JWT with fulfillment.api scope"
           }
         ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ],
-        "x-unitTests": [],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
-      }
-    },
-    "/batchorders/{orderid}": {
-      "get": {
-        "description": "Retrieves a batch order",
-        "summary": "Get Batch Order",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "BatchordersByOrderidGet",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "orderid",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ],
-        "x-unitTests": [],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
-      }
-    },
-    "/batchOrders": {
-      "get": {
-        "description": "Lists batch orders\n\n> Supports paging",
-        "summary": "List Batch Orders",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "BatchOrdersGet",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "skip",
-            "in": "query",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
-            "description": ""
-          },
-          {
-            "name": "top",
-            "in": "query",
-            "required": true,
-            "type": "integer",
-            "format": "int32",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          },
-          "default": {
-            "description": "Internal Server Error",
-            "schema": {
-              "$ref": "#/definitions/500InternalServerError"
-            },
-            "examples": {
-              "application/json": {
-                "status": 500,
-                "versioning": {
-                  "X-HW-Version": "1"
-                },
-                "links": {
-                  "self": "https://fulfillment.test.hwapps.net/batchOrders"
-                },
-                "schema": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.error.json",
-                "error": {
-                  "message": "An error has occurred."
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ],
-        "x-unitTests": [
-          {
-            "request": {
-              "method": "GET",
-              "uri": "/batchOrders?skip=0&top=5"
-            },
-            "expectedResponse": {
-              "x-allowExtraHeaders": true,
-              "x-bodyMatchMode": "NONE",
-              "x-arrayOrderedMatching": false,
-              "x-arrayCheckCount": false,
-              "x-matchResponseSchema": true,
-              "headers": {}
-            },
-            "x-testShouldPass": true,
-            "x-testEnabled": true,
-            "x-testName": "List Batch Orders",
-            "x-testDescription": "Lists batch orders\n\n> Supports paging"
-          }
-        ],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
-      },
-      "post": {
-        "description": "For for each consumer in the list, creates an order content and requests an optional email be sent to the consumer with a link to the content\n\n\n## Data Parameters\n| Parameter  | Type  | Description  | Allowed Values |\n|---|---|---|---|\n|consumer|object:Consumer|The consumer for which this order is being created||\n|actions|array:object:Action|The delivery action(s) to take upon successful processing||\n|message|object:Message|Message and item meta data ||",
-        "summary": "Create Batch Order",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "BatchOrdersPost",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "Body",
-            "in": "body",
-            "required": true,
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/CreateBatchOrderrequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ],
-        "x-unitTests": [
-          {
-            "request": {
-              "method": "POST",
-              "uri": "/batchOrders",
-              "headers": {
-                "Content-Type": "application/json"
-              },
-              "body": "{\"consumers\":[{\"href\":\"{{consumer.api}}/v1/consumers/{{consumer.id}}\"},{\"href\":\"{{consumer.api}}/v1/consumers/{{consumer.id.2}}\"}],\"actions\":[{\"action\":\"send.email\",\"data\":{\"from\":\"Fulfillment Service <FulfillmentService@healthwise.org>\",\"subject\":\"This message was sent by Fulfillment Api\",\"body\":\"<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>\"}}],\"message\":{\"note\":\"Good talking to you today {{consumer.name.given}}.\",\"items\":[{\"href\":\"{{content.api}}/v1/content/aa113121/en-us/\"}]}}"
-            },
-            "expectedResponse": {
-              "x-allowExtraHeaders": true,
-              "x-bodyMatchMode": "NONE",
-              "x-arrayOrderedMatching": false,
-              "x-arrayCheckCount": false,
-              "x-matchResponseSchema": true,
-              "headers": {}
-            },
-            "x-testShouldPass": true,
-            "x-testEnabled": true,
-            "x-testName": "Create Batch Order",
-            "x-testDescription": "For for each consumer in the list, creates an order content and requests an optional email be sent to the consumer with a link to the content\n\n\n## Data Parameters\n| Parameter  | Type  | Description  | Allowed Values |\n|---|---|---|---|\n|consumer|object:Consumer|The consumer for which this order is being created||\n|actions|array:object:Action|The delivery action(s) to take upon successful processing||\n|message|object:Message|Message and item meta data ||"
-          }
-        ],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
-      }
-    },
-    "/batchorders/{orderid}/orders": {
-      "get": {
-        "description": "Gets a list of orders created from a batch order, optionally filtered by status",
-        "summary": "List Orders Inside Batch Order",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "BatchordersOrdersByOrderidGet",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "status",
-            "in": "query",
-            "required": true,
-            "type": "string",
-            "description": ""
-          },
-          {
-            "name": "orderid",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ],
-        "x-unitTests": [],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
-      }
-    },
-    "/{filename}": {
-      "get": {
-        "description": "<<TODO: What is this?>>",
-        "summary": "Get resource index",
-        "tags": [
-          "Misc"
-        ],
-        "operationId": "ByFilenameGet",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "filename",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "description": ""
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "auth": []
-          }
-        ],
-        "x-unitTests": [],
-        "x-operation-settings": {
-          "CollectParameters": false,
-          "AllowDynamicQueryParameters": false,
-          "AllowDynamicFormParameters": false,
-          "IsMultiContentStreaming": false
-        }
-      }
-    }
-  },
-  "definitions": {
-    "200Ok": {
-      "title": "200 OK",
-      "example": {
-        "status": 200,
-        "versioning": {
-          "X-HW-Version": "1"
-        },
-        "links": {
-          "self": "https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3&skip=0&top=5",
-          "next": "https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3&skip=5&top=5"
-        },
-        "schema": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.items.json",
-        "items": [
-          {
-            "href": "https://fulfillment.test.hwapps.net/orders/f70eeb80-53a5-41a2-ac90-645f96502f13",
-            "data": {
-              "orderStatus": "completed",
-              "lastChanged": "2018-02-13T04:05:20"
-            }
-          },
-          {
-            "href": "https://fulfillment.test.hwapps.net/orders/ee2b1893-07e0-4801-a39b-5e1b47f028bf",
-            "data": {
-              "orderStatus": "completed",
-              "lastChanged": "2018-02-13T04:04:49"
-            }
-          },
-          {
-            "href": "https://fulfillment.test.hwapps.net/orders/907aeaec-2b18-4f53-952d-aebac01c5cb3",
-            "data": {
-              "orderStatus": "completed",
-              "lastChanged": "2018-02-13T04:04:24"
-            }
-          },
-          {
-            "href": "https://fulfillment.test.hwapps.net/orders/53fef698-51c8-4f09-8173-3349ff9c2505",
-            "data": {
-              "orderStatus": "completed",
-              "lastChanged": "2018-02-13T04:03:54"
-            }
-          },
-          {
-            "href": "https://fulfillment.test.hwapps.net/orders/835fdacf-399b-454f-b020-5ae05d33bf84",
-            "data": {
-              "orderStatus": "completed",
-              "lastChanged": "2018-02-13T03:55:46"
-            }
-          }
-        ],
-        "pagination": {
-          "count": 8,
-          "top": 5,
-          "skip": 0
-        }
-      },
-      "type": "object",
-      "properties": {
-        "status": {
-          "description": "",
-          "example": 200,
-          "type": "integer",
-          "format": "int32"
-        },
-        "versioning": {
-          "$ref": "#/definitions/Versioning"
-        },
-        "links": {
-          "$ref": "#/definitions/Links"
-        },
-        "schema": {
-          "description": "",
-          "example": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.items.json",
-          "type": "string"
-        },
-        "items": {
-          "description": "",
-          "example": [
-            {
-              "href": "https://fulfillment.test.hwapps.net/orders/f70eeb80-53a5-41a2-ac90-645f96502f13",
-              "data": {
-                "orderStatus": "completed",
-                "lastChanged": "2018-02-13T04:05:20"
-              }
-            },
-            {
-              "href": "https://fulfillment.test.hwapps.net/orders/ee2b1893-07e0-4801-a39b-5e1b47f028bf",
-              "data": {
-                "orderStatus": "completed",
-                "lastChanged": "2018-02-13T04:04:49"
-              }
-            },
-            {
-              "href": "https://fulfillment.test.hwapps.net/orders/907aeaec-2b18-4f53-952d-aebac01c5cb3",
-              "data": {
-                "orderStatus": "completed",
-                "lastChanged": "2018-02-13T04:04:24"
-              }
-            },
-            {
-              "href": "https://fulfillment.test.hwapps.net/orders/53fef698-51c8-4f09-8173-3349ff9c2505",
-              "data": {
-                "orderStatus": "completed",
-                "lastChanged": "2018-02-13T04:03:54"
-              }
-            },
-            {
-              "href": "https://fulfillment.test.hwapps.net/orders/835fdacf-399b-454f-b020-5ae05d33bf84",
-              "data": {
-                "orderStatus": "completed",
-                "lastChanged": "2018-02-13T03:55:46"
-              }
-            }
+        "body": {},
+        "url": {
+          "raw": "{{fulfillment.api}}/orders?consumerId={{consumer.id}}&skip=0&top=5",
+          "host": [
+            "{{fulfillment.api}}"
           ],
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Item"
-          }
-        },
-        "pagination": {
-          "$ref": "#/definitions/Pagination"
-        }
-      },
-      "required": [
-        "status",
-        "versioning",
-        "links",
-        "schema",
-        "items",
-        "pagination"
-      ]
-    },
-    "Versioning": {
-      "title": "Versioning",
-      "example": {
-        "X-HW-Version": "1"
-      },
-      "type": "object",
-      "properties": {
-        "X-HW-Version": {
-          "description": "",
-          "example": "1",
-          "type": "string"
-        }
-      },
-      "required": [
-        "X-HW-Version"
-      ]
-    },
-    "Links": {
-      "title": "Links",
-      "example": {
-        "self": "https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3&skip=0&top=5",
-        "next": "https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3&skip=5&top=5"
-      },
-      "type": "object",
-      "properties": {
-        "self": {
-          "description": "",
-          "example": "https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3&skip=0&top=5",
-          "type": "string"
-        },
-        "next": {
-          "description": "",
-          "example": "https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3&skip=5&top=5",
-          "type": "string"
-        }
-      },
-      "required": [
-        "self",
-        "next"
-      ]
-    },
-    "Item": {
-      "title": "Item",
-      "example": {
-        "href": "https://fulfillment.test.hwapps.net/orders/f70eeb80-53a5-41a2-ac90-645f96502f13",
-        "data": {
-          "orderStatus": "completed",
-          "lastChanged": "2018-02-13T04:05:20"
-        }
-      },
-      "type": "object",
-      "properties": {
-        "href": {
-          "description": "",
-          "example": "https://fulfillment.test.hwapps.net/orders/f70eeb80-53a5-41a2-ac90-645f96502f13",
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/Data"
-        }
-      },
-      "required": [
-        "href",
-        "data"
-      ]
-    },
-    "Data": {
-      "title": "Data",
-      "example": {
-        "orderStatus": "completed",
-        "lastChanged": "2018-02-13T04:05:20"
-      },
-      "type": "object",
-      "properties": {
-        "orderStatus": {
-          "description": "",
-          "example": "completed",
-          "type": "string"
-        },
-        "lastChanged": {
-          "description": "",
-          "example": "2/13/2018 4:05:20 AM",
-          "type": "string"
-        }
-      },
-      "required": [
-        "orderStatus",
-        "lastChanged"
-      ]
-    },
-    "Pagination": {
-      "title": "Pagination",
-      "example": {
-        "count": 8,
-        "top": 5,
-        "skip": 0
-      },
-      "type": "object",
-      "properties": {
-        "count": {
-          "description": "",
-          "example": 8,
-          "type": "integer",
-          "format": "int32"
-        },
-        "top": {
-          "description": "",
-          "example": 5,
-          "type": "integer",
-          "format": "int32"
-        },
-        "skip": {
-          "description": "",
-          "example": 0,
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "required": [
-        "count",
-        "top",
-        "skip"
-      ]
-    },
-    "CreateOrderrequest": {
-      "title": "Create OrderRequest",
-      "example": {
-        "consumer": {
-          "href": "{{consumer.api}}/v1/consumers/{{consumer.id}}"
-        },
-        "actions": [
-          {
-            "action": "send.email",
-            "data": {
-              "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-              "subject": "This message was sent by Fulfillment Api",
-              "body": "<div>{{headinggroup}}</div><p>{{headingParagraph}}</p><p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>",
-              "headingGroup": "TEST HEADING Outpatient Care Clinic",
-              "headingParagraph": "...Clever catchphrase"
-            }
-          }
-        ],
-        "deliverOn": "7/5/2017 8:59:01 PM",
-        "message": {
-          "note": "Good talking to you today {{consumer.name.given}}.",
-          "items": [
+          "path": [
+            "orders"
+          ],
+          "query": [
             {
-              "href": "{{content.api}}/v1/content/abq6317/en-us/"
+              "key": "consumerId",
+              "value": "{{consumer.id}}",
+              "equals": true,
+              "description": "[optional] Filter list of orders to a specific consumer"
+            },
+            {
+              "key": "skip",
+              "value": "0",
+              "equals": true,
+              "description": "number of records to skip for paged data"
+            },
+            {
+              "key": "top",
+              "value": "5",
+              "equals": true,
+              "description": "number of records to retrieve starting at \"skip\" "
             }
           ]
-        }
-      },
-      "type": "object",
-      "properties": {
-        "consumer": {
-          "$ref": "#/definitions/Consumer"
         },
-        "actions": {
-          "description": "",
-          "example": [
-            {
-              "action": "send.email",
-              "data": {
-                "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-                "subject": "This message was sent by Fulfillment Api",
-                "body": "<div>{{headinggroup}}</div><p>{{headingParagraph}}</p><p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>",
-                "headingGroup": "TEST HEADING Outpatient Care Clinic",
-                "headingParagraph": "...Clever catchphrase"
-              }
-            }
-          ],
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Action"
-          }
-        },
-        "deliverOn": {
-          "description": "",
-          "example": "7/5/2017 8:59:01 PM",
-          "type": "string"
-        },
-        "message": {
-          "$ref": "#/definitions/Message"
-        }
+        "description": "Gets a list of orders with their current status"
       },
-      "required": [
-        "consumer",
-        "actions",
-        "deliverOn",
-        "message"
-      ]
-    },
-    "Consumer": {
-      "title": "Consumer",
-      "example": {
-        "href": "{{consumer.api}}/v1/consumers/{{consumer.id}}"
-      },
-      "type": "object",
-      "properties": {
-        "href": {
-          "description": "",
-          "example": "{{consumer.api}}/v1/consumers/{{consumer.id}}",
-          "type": "string"
-        }
-      },
-      "required": [
-        "href"
-      ]
-    },
-    "Action": {
-      "title": "Action",
-      "example": {
-        "action": "send.email",
-        "data": {
-          "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-          "subject": "This message was sent by Fulfillment Api",
-          "body": "<div>{{headinggroup}}</div><p>{{headingParagraph}}</p><p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>",
-          "headingGroup": "TEST HEADING Outpatient Care Clinic",
-          "headingParagraph": "...Clever catchphrase"
-        }
-      },
-      "type": "object",
-      "properties": {
-        "action": {
-          "description": "",
-          "example": "send.email",
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/Data9"
-        }
-      },
-      "required": [
-        "action",
-        "data"
-      ]
-    },
-    "Data9": {
-      "title": "Data9",
-      "example": {
-        "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-        "subject": "This message was sent by Fulfillment Api",
-        "body": "<div>{{headinggroup}}</div><p>{{headingParagraph}}</p><p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>",
-        "headingGroup": "TEST HEADING Outpatient Care Clinic",
-        "headingParagraph": "...Clever catchphrase"
-      },
-      "type": "object",
-      "properties": {
-        "from": {
-          "description": "",
-          "example": "Fulfillment Service <FulfillmentService@healthwise.org>",
-          "type": "string"
-        },
-        "subject": {
-          "description": "",
-          "example": "This message was sent by Fulfillment Api",
-          "type": "string"
-        },
-        "body": {
-          "description": "",
-          "example": "<div>{{headinggroup}}</div><p>{{headingParagraph}}</p><p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>",
-          "type": "string"
-        },
-        "headingGroup": {
-          "description": "",
-          "example": "TEST HEADING Outpatient Care Clinic",
-          "type": "string"
-        },
-        "headingParagraph": {
-          "description": "",
-          "example": "...Clever catchphrase",
-          "type": "string"
-        }
-      },
-      "required": [
-        "from",
-        "subject",
-        "body",
-        "headingGroup",
-        "headingParagraph"
-      ]
-    },
-    "Message": {
-      "title": "Message",
-      "example": {
-        "note": "Good talking to you today {{consumer.name.given}}.",
-        "items": [
-          {
-            "href": "{{content.api}}/v1/content/abq6317/en-us/"
-          }
-        ]
-      },
-      "type": "object",
-      "properties": {
-        "note": {
-          "description": "",
-          "example": "Good talking to you today {{consumer.name.given}}.",
-          "type": "string"
-        },
-        "items": {
-          "description": "",
-          "example": [
-            {
-              "href": "{{content.api}}/v1/content/abq6317/en-us/"
-            }
-          ],
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Item11"
-          }
-        }
-      },
-      "required": [
-        "note",
-        "items"
-      ]
-    },
-    "Item11": {
-      "title": "Item11",
-      "example": {
-        "href": "{{content.api}}/v1/content/abq6317/en-us/"
-      },
-      "type": "object",
-      "properties": {
-        "href": {
-          "description": "",
-          "example": "{{content.api}}/v1/content/abq6317/en-us/",
-          "type": "string"
-        }
-      },
-      "required": [
-        "href"
-      ]
-    },
-    "400 bad request  wrong consumer": {
-      "title": "400 Bad Request - Wrong Consumer",
-      "example": {
-        "status": 400,
-        "versioning": {
-          "X-HW-Version": "1"
-        },
-        "links": {
-          "self": "https://fulfillment.test.hwapps.net/orders"
-        },
-        "schema": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.error.json",
-        "error": {
-          "message": "The consumer identified does not exist. Please create a consumer prior to creating an order."
-        }
-      },
-      "type": "object",
-      "properties": {
-        "status": {
-          "description": "",
-          "example": 400,
-          "type": "integer",
-          "format": "int32"
-        },
-        "versioning": {
-          "$ref": "#/definitions/Versioning"
-        },
-        "links": {
-          "$ref": "#/definitions/Links14"
-        },
-        "schema": {
-          "description": "",
-          "example": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.error.json",
-          "type": "string"
-        },
-        "error": {
-          "$ref": "#/definitions/Error"
-        }
-      },
-      "required": [
-        "status",
-        "versioning",
-        "links",
-        "schema",
-        "error"
-      ]
-    },
-    "Links14": {
-      "title": "Links14",
-      "example": {
-        "self": "https://fulfillment.test.hwapps.net/orders"
-      },
-      "type": "object",
-      "properties": {
-        "self": {
-          "description": "",
-          "example": "https://fulfillment.test.hwapps.net/orders",
-          "type": "string"
-        }
-      },
-      "required": [
-        "self"
-      ]
-    },
-    "Error": {
-      "title": "Error",
-      "example": {
-        "message": "The consumer identified does not exist. Please create a consumer prior to creating an order."
-      },
-      "type": "object",
-      "properties": {
-        "message": {
-          "description": "",
-          "example": "The consumer identified does not exist. Please create a consumer prior to creating an order.",
-          "type": "string"
-        }
-      },
-      "required": [
-        "message"
-      ]
-    },
-    "201Created": {
-      "title": "201 Created",
-      "example": {
-        "status": 201,
-        "versioning": {
-          "X-HW-Version": "1"
-        },
-        "links": {
-          "self": "https://fulfillment.test.hwapps.net/orders/8fc27f63-9dc6-4751-b7d0-b6b20a5e7885"
-        },
-        "schema": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.item.json",
-        "data": {
-          "actions": [
-            {
-              "action": "send.email",
-              "data": {
-                "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-                "subject": "This message was sent by Fulfillment Api",
-                "body": "<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>"
-              }
-            }
-          ],
-          "message": {
-            "note": "Good talking to you today {{consumer.name.given}}.",
-            "items": [
+      "response": [
+        {
+          "id": "249837-ff131fdc-9779-87b9-87a3-e757b156d0e4",
+          "name": "200 OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
               {
-                "href": "https://content.test.hwapps.net/v1/content/abq6317/en-us/",
-                "presurveyhref": "https://content.test.hwapps.net/v1/content/somepresurvey/en-us",
-                "postsurveyhref": "https://content.test.hwapps.net/v1/content/somepostsurvey/en-us"
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": "The content type of the request"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "disabled": false,
+                "description": "OAuth 2.0 JWT with fulfillment.api scope"
               }
-            ]
+            ],
+            "body": {},
+            "url": {
+              "raw": "{{fulfillment.api}}/orders?consumerId={{consumer.id}}&skip=0&top=5",
+              "host": [
+                "{{fulfillment.api}}"
+              ],
+              "path": [
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "consumerId",
+                  "value": "{{consumer.id}}",
+                  "equals": true,
+                  "description": "[optional] Filter list of orders to a specific consumer"
+                },
+                {
+                  "key": "skip",
+                  "value": "0",
+                  "equals": true,
+                  "description": "number of records to skip for paged data"
+                },
+                {
+                  "key": "top",
+                  "value": "5",
+                  "equals": true,
+                  "description": "number of records to retrieve starting at \"skip\" "
+                }
+              ]
+            }
           },
-          "id": "8fc27f63-9dc6-4751-b7d0-b6b20a5e7885",
-          "orderState": {
-            "status": "Delayed"
-          },
-          "deliverOn": "2017-07-05T20:59:01"
-        }
-      },
-      "type": "object",
-      "properties": {
-        "status": {
-          "description": "",
-          "example": 201,
-          "type": "integer",
-          "format": "int32"
-        },
-        "versioning": {
-          "$ref": "#/definitions/Versioning"
-        },
-        "links": {
-          "$ref": "#/definitions/Links14"
-        },
-        "schema": {
-          "description": "",
-          "example": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.item.json",
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/Data19"
-        }
-      },
-      "required": [
-        "status",
-        "versioning",
-        "links",
-        "schema",
-        "data"
-      ]
-    },
-    "Data19": {
-      "title": "Data19",
-      "example": {
-        "actions": [
-          {
-            "action": "send.email",
-            "data": {
-              "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-              "subject": "This message was sent by Fulfillment Api",
-              "body": "<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>"
-            }
-          }
-        ],
-        "message": {
-          "note": "Good talking to you today {{consumer.name.given}}.",
-          "items": [
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
             {
-              "href": "https://content.test.hwapps.net/v1/content/abq6317/en-us/",
-              "presurveyhref": "https://content.test.hwapps.net/v1/content/somepresurvey/en-us",
-              "postsurveyhref": "https://content.test.hwapps.net/v1/content/somepostsurvey/en-us"
-            }
-          ]
-        },
-        "id": "8fc27f63-9dc6-4751-b7d0-b6b20a5e7885",
-        "orderState": {
-          "status": "Delayed"
-        },
-        "deliverOn": "2017-07-05T20:59:01"
-      },
-      "type": "object",
-      "properties": {
-        "actions": {
-          "description": "",
-          "example": [
-            {
-              "action": "send.email",
-              "data": {
-                "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-                "subject": "This message was sent by Fulfillment Api",
-                "body": "<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>"
-              }
-            }
-          ],
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Action20"
-          }
-        },
-        "message": {
-          "$ref": "#/definitions/Message22"
-        },
-        "id": {
-          "description": "",
-          "example": "8fc27f63-9dc6-4751-b7d0-b6b20a5e7885",
-          "type": "string"
-        },
-        "orderState": {
-          "$ref": "#/definitions/OrderState"
-        },
-        "deliverOn": {
-          "description": "",
-          "example": "7/5/2017 8:59:01 PM",
-          "type": "string"
-        }
-      },
-      "required": [
-        "actions",
-        "message",
-        "id",
-        "orderState",
-        "deliverOn"
-      ]
-    },
-    "Action20": {
-      "title": "Action20",
-      "example": {
-        "action": "send.email",
-        "data": {
-          "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-          "subject": "This message was sent by Fulfillment Api",
-          "body": "<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>"
-        }
-      },
-      "type": "object",
-      "properties": {
-        "action": {
-          "description": "",
-          "example": "send.email",
-          "type": "string"
-        },
-        "data": {
-          "$ref": "#/definitions/Data21"
-        }
-      },
-      "required": [
-        "action",
-        "data"
-      ]
-    },
-    "Data21": {
-      "title": "Data21",
-      "example": {
-        "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-        "subject": "This message was sent by Fulfillment Api",
-        "body": "<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>"
-      },
-      "type": "object",
-      "properties": {
-        "from": {
-          "description": "",
-          "example": "Fulfillment Service <FulfillmentService@healthwise.org>",
-          "type": "string"
-        },
-        "subject": {
-          "description": "",
-          "example": "This message was sent by Fulfillment Api",
-          "type": "string"
-        },
-        "body": {
-          "description": "",
-          "example": "<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>",
-          "type": "string"
-        }
-      },
-      "required": [
-        "from",
-        "subject",
-        "body"
-      ]
-    },
-    "Message22": {
-      "title": "Message22",
-      "example": {
-        "note": "Good talking to you today {{consumer.name.given}}.",
-        "items": [
-          {
-            "href": "https://content.test.hwapps.net/v1/content/abq6317/en-us/",
-            "presurveyhref": "https://content.test.hwapps.net/v1/content/somepresurvey/en-us",
-            "postsurveyhref": "https://content.test.hwapps.net/v1/content/somepostsurvey/en-us"
-          }
-        ]
-      },
-      "type": "object",
-      "properties": {
-        "note": {
-          "description": "",
-          "example": "Good talking to you today {{consumer.name.given}}.",
-          "type": "string"
-        },
-        "items": {
-          "description": "",
-          "example": [
-            {
-              "href": "https://content.test.hwapps.net/v1/content/abq6317/en-us/",
-              "presurveyhref": "https://content.test.hwapps.net/v1/content/somepresurvey/en-us",
-              "postsurveyhref": "https://content.test.hwapps.net/v1/content/somepostsurvey/en-us"
-            }
-          ],
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Item23"
-          }
-        }
-      },
-      "required": [
-        "note",
-        "items"
-      ]
-    },
-    "Item23": {
-      "title": "Item23",
-      "example": {
-        "href": "https://content.test.hwapps.net/v1/content/abq6317/en-us/",
-        "presurveyhref": "https://content.test.hwapps.net/v1/content/somepresurvey/en-us",
-        "postsurveyhref": "https://content.test.hwapps.net/v1/content/somepostsurvey/en-us"
-      },
-      "type": "object",
-      "properties": {
-        "href": {
-          "description": "",
-          "example": "https://content.test.hwapps.net/v1/content/abq6317/en-us/",
-          "type": "string"
-        },
-        "presurveyhref": {
-          "description": "",
-          "example": "https://content.test.hwapps.net/v1/content/somepresurvey/en-us",
-          "type": "string"
-        },
-        "postsurveyhref": {
-          "description": "",
-          "example": "https://content.test.hwapps.net/v1/content/somepostsurvey/en-us",
-          "type": "string"
-        }
-      },
-      "required": [
-        "href",
-        "presurveyhref",
-        "postsurveyhref"
-      ]
-    },
-    "OrderState": {
-      "title": "OrderState",
-      "example": {
-        "status": "Delayed"
-      },
-      "type": "object",
-      "properties": {
-        "status": {
-          "description": "",
-          "example": "Delayed",
-          "type": "string"
-        }
-      },
-      "required": [
-        "status"
-      ]
-    },
-    "CreateBatchOrderrequest": {
-      "title": "Create Batch OrderRequest",
-      "example": {
-        "consumers": [
-          {
-            "href": "{{consumer.api}}/v1/consumers/{{consumer.id}}"
-          },
-          {
-            "href": "{{consumer.api}}/v1/consumers/{{consumer.id.2}}"
-          }
-        ],
-        "actions": [
-          {
-            "action": "send.email",
-            "data": {
-              "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-              "subject": "This message was sent by Fulfillment Api",
-              "body": "<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>"
-            }
-          }
-        ],
-        "message": {
-          "note": "Good talking to you today {{consumer.name.given}}.",
-          "items": [
-            {
-              "href": "{{content.api}}/v1/content/aa113121/en-us/"
-            }
-          ]
-        }
-      },
-      "type": "object",
-      "properties": {
-        "consumers": {
-          "description": "",
-          "example": [
-            {
-              "href": "{{consumer.api}}/v1/consumers/{{consumer.id}}"
+              "key": "Cache-Control",
+              "value": "no-cache,no-cache, max-age=0, no-store, must-revalidate, private",
+              "name": "Cache-Control",
+              "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
             },
             {
-              "href": "{{consumer.api}}/v1/consumers/{{consumer.id.2}}"
-            }
-          ],
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Consumer"
-          }
-        },
-        "actions": {
-          "description": "",
-          "example": [
+              "key": "Content-Length",
+              "value": "1251",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
             {
-              "action": "send.email",
-              "data": {
-                "from": "Fulfillment Service <FulfillmentService@healthwise.org>",
-                "subject": "This message was sent by Fulfillment Api",
-                "body": "<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>"
-              }
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 12 Feb 2018 21:22:21 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Expires",
+              "value": "-1",
+              "name": "Expires",
+              "description": "Gives the date/time after which the response is considered stale"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache,no-cache",
+              "name": "Pragma",
+              "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+            },
+            {
+              "key": "Server",
+              "value": "Microsoft-IIS/10.0",
+              "name": "Server",
+              "description": "A name for the server"
+            },
+            {
+              "key": "X-AspNet-Version",
+              "value": "4.0.30319",
+              "name": "X-AspNet-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff",
+              "name": "X-Content-Type-Options",
+              "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN",
+              "name": "X-Frame-Options",
+              "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+            },
+            {
+              "key": "X-HW-Version",
+              "value": "1; equivalent-to=1",
+              "name": "X-HW-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Healthwise-Software-Version",
+              "value": "1.2.79.1",
+              "name": "X-Healthwise-Software-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "ASP.NET",
+              "name": "X-Powered-By",
+              "description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "1",
+              "name": "X-XSS-Protection",
+              "description": "Cross-site scripting (XSS) filter"
+            },
+            {
+              "key": "X-hw-request-id",
+              "value": "c44f9138-0b71-4205-a6e8-d98753c9343d",
+              "name": "X-hw-request-id",
+              "description": "Custom header"
             }
           ],
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Action20"
-          }
-        },
-        "message": {
-          "$ref": "#/definitions/Message"
+          "cookie": [],
+          "responseTime": "204",
+          "body": "{\"status\":200,\"versioning\":{\"X-HW-Version\":\"1\"},\"links\":{\"self\":\"https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3\\u0026skip=0\\u0026top=5\",\"next\":\"https://fulfillment.test.hwapps.net/orders?consumerId=a5a9c1a0-7f52-46e4-84f4-ae877fcb30a3\\u0026skip=5\\u0026top=5\"},\"schema\":\"https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.items.json\",\"items\":[{\"href\":\"https://fulfillment.test.hwapps.net/orders/f70eeb80-53a5-41a2-ac90-645f96502f13\",\"data\":{\"orderStatus\":\"completed\",\"lastChanged\":\"2018-02-13T04:05:20\"}},{\"href\":\"https://fulfillment.test.hwapps.net/orders/ee2b1893-07e0-4801-a39b-5e1b47f028bf\",\"data\":{\"orderStatus\":\"completed\",\"lastChanged\":\"2018-02-13T04:04:49\"}},{\"href\":\"https://fulfillment.test.hwapps.net/orders/907aeaec-2b18-4f53-952d-aebac01c5cb3\",\"data\":{\"orderStatus\":\"completed\",\"lastChanged\":\"2018-02-13T04:04:24\"}},{\"href\":\"https://fulfillment.test.hwapps.net/orders/53fef698-51c8-4f09-8173-3349ff9c2505\",\"data\":{\"orderStatus\":\"completed\",\"lastChanged\":\"2018-02-13T04:03:54\"}},{\"href\":\"https://fulfillment.test.hwapps.net/orders/835fdacf-399b-454f-b020-5ae05d33bf84\",\"data\":{\"orderStatus\":\"completed\",\"lastChanged\":\"2018-02-13T03:55:46\"}}],\"pagination\":{\"count\":8,\"top\":5,\"skip\":0}}"
         }
-      },
-      "required": [
-        "consumers",
-        "actions",
-        "message"
       ]
     },
-    "500InternalServerError": {
-      "title": "500 Internal Server Error",
-      "example": {
-        "status": 500,
-        "versioning": {
-          "X-HW-Version": "1"
-        },
-        "links": {
-          "self": "https://fulfillment.test.hwapps.net/batchOrders"
-        },
-        "schema": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.error.json",
-        "error": {
-          "message": "An error has occurred."
-        }
+    {
+      "_postman_id": "249837-90b563e6-2327-496d-94ff-85e8c45fd761",
+      "name": "Get Order",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt}}",
+            "description": "OAuth 2.0 JWT with fulfillment.api scope"
+          }
+        ],
+        "body": {},
+        "url": "{{fulfillment.api}}/orders/{{orderid}}",
+        "description": "Retrieves a single order from the system"
       },
-      "type": "object",
-      "properties": {
-        "status": {
-          "description": "",
-          "example": 500,
-          "type": "integer",
-          "format": "int32"
-        },
-        "versioning": {
-          "$ref": "#/definitions/Versioning"
-        },
-        "links": {
-          "$ref": "#/definitions/Links14"
-        },
-        "schema": {
-          "description": "",
-          "example": "https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.error.json",
-          "type": "string"
-        },
-        "error": {
-          "$ref": "#/definitions/Error"
+      "response": []
+    },
+    {
+      "_postman_id": "249837-ae78da77-3926-f977-0469-5572fb74fc0e",
+      "name": "Create Order",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "754d8b2e-9f10-4033-8766-0e057f8e9854",
+            "type": "text/javascript",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "postman.setEnvironmentVariable(\"order.id\", jsonData.data.id);"
+            ]
+          }
         }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt}}",
+            "description": "OAuth 2.0 JWT with fulfillment.api scope"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"consumer\": {\n      \"href\": \"{{consumer.api}}/v1/consumers/{{consumer.id}}\"\n    },\n    \"actions\": [\n        {\n            \"action\": \"send.email\",\n            \"data\": {\n                \"from\": \"Fulfillment Service <FulfillmentService@healthwise.org>\",\n                \"subject\": \"This message was sent by Fulfillment Api\",\n                \"body\": \"<div>{{headinggroup}}</div><p>{{headingParagraph}}</p><p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>\",\n                \"headingGroup\":\"TEST HEADING Outpatient Care Clinic\", \n                \"headingParagraph\":\"...Clever catchphrase\"\n            }\n        }        \n    ],\n    \"deliverOn\":\"7/5/2017 8:59:01 PM\",\n    \"message\": {\n        \"note\": \"Good talking to you today {{consumer.name.given}}.\",\n        \"items\": [\n            {\n              \"href\": \"{{content.api}}/v1/content/abq6317/en-us/\"\n            }\n        ]\n    }\n}"
+        },
+        "url": "{{fulfillment.api}}/orders",
+        "description": "Creates an order for content and requests an email be sent to the consumer with a link to the content.\r\n\r\n\r\n## Data Parameters\r\n| Parameter  | Type  | Description  | Allowed Values |\r\n|---|---|---|---|\r\n|consumer|object:Consumer|The consumer for which this order is being created||\r\n|actions|array:object:Action|The delivery action(s) to take upon successful processing||\r\n|deliverOn|datetime|[optional] date on which to process order.  If omitted, order will be be processed immediately||\r\n|message|object:Message|Message and item meta data ||\r\n|context|dictionary:object|[Optional] ||\r\n|tags|dictionary:object|[Optional] Meta-data items not used in processing that will be stored with the order ||\r\n|assessment|object:Assessment|[Optional] ||\r\n|survey|object:Survey|[Optional][Deprecated] left for backwards compatibility, surveys no longer supported ||\r\n|deliverOn|datetime|[Optional] date on which to process the order||"
       },
-      "required": [
-        "status",
-        "versioning",
-        "links",
-        "schema",
-        "error"
+      "response": [
+        {
+          "id": "249837-1f45a54f-f389-d515-5c9c-1bf0b38f9b9f",
+          "name": "400 Bad Request - Wrong Consumer",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": "The content type of the request"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "description": "OAuth 2.0 JWT with fulfillment.api scope"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"consumer\": {\n      \"href\": \"{{consumer.api}}/v1/consumers/{{consumer.id}}\"\n    },\n    \"actions\": [\n        {\n            \"action\": \"send.email\",\n            \"data\": {\n                \"from\": \"Fulfillment Service <FulfillmentService@healthwise.org>\",\n                \"subject\": \"This message was sent by Fulfillment Api\",\n                \"body\": \"<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>\"\n            }\n        }        \n    ],\n    \"deliverOn\":\"7/5/2017 8:59:01 PM\",\n    \"message\": {\n        \"note\": \"Good talking to you today {{consumer.name.given}}.\",\n        \"items\": [\n            {\n              \"href\": \"{{content.api}}/v1/content/abq6317/en-us/\",\n              \"presurveyhref\": \"{{content.api}}/v1/content/somepresurvey/en-us\",\n              \"postsurveyhref\": \"{{content.api}}/v1/content/somepostsurvey/en-us\"\n            }\n        ]\n    }\n}"
+            },
+            "url": "{{fulfillment.api}}/orders"
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache,no-cache, max-age=0, no-store, must-revalidate, private",
+              "name": "Cache-Control",
+              "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+            },
+            {
+              "key": "Connection",
+              "value": "close",
+              "name": "Connection",
+              "description": "Options that are desired for the connection"
+            },
+            {
+              "key": "Content-Length",
+              "value": "310",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 12 Feb 2018 15:36:38 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Expires",
+              "value": "-1",
+              "name": "Expires",
+              "description": "Gives the date/time after which the response is considered stale"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache,no-cache",
+              "name": "Pragma",
+              "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+            },
+            {
+              "key": "Server",
+              "value": "Microsoft-IIS/10.0",
+              "name": "Server",
+              "description": "A name for the server"
+            },
+            {
+              "key": "X-AspNet-Version",
+              "value": "4.0.30319",
+              "name": "X-AspNet-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff",
+              "name": "X-Content-Type-Options",
+              "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN",
+              "name": "X-Frame-Options",
+              "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+            },
+            {
+              "key": "X-HW-Version",
+              "value": "1; equivalent-to=1",
+              "name": "X-HW-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Healthwise-Software-Version",
+              "value": "1.2.79.1",
+              "name": "X-Healthwise-Software-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "ASP.NET",
+              "name": "X-Powered-By",
+              "description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "1",
+              "name": "X-XSS-Protection",
+              "description": "Cross-site scripting (XSS) filter"
+            },
+            {
+              "key": "X-hw-request-id",
+              "value": "58feac37-aeed-4276-b2d0-edf64eb4c71b",
+              "name": "X-hw-request-id",
+              "description": "Custom header"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "311",
+          "body": "{\"status\":400,\"versioning\":{\"X-HW-Version\":\"1\"},\"links\":{\"self\":\"https://fulfillment.test.hwapps.net/orders\"},\"schema\":\"https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.error.json\",\"error\":{\"message\":\"The consumer identified does not exist. Please create a consumer prior to creating an order.\"}}"
+        },
+        {
+          "id": "249837-30f1e829-1202-c59e-a0b5-4210e32c4c1a",
+          "name": "201 Created",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": false,
+                "description": "The content type of the request"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "disabled": false,
+                "description": "OAuth 2.0 JWT with fulfillment.api scope"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"consumer\": {\n      \"href\": \"{{consumer.api}}/v1/consumers/{{consumer.id}}\"\n    },\n    \"actions\": [\n        {\n            \"action\": \"send.email\",\n            \"data\": {\n                \"from\": \"Fulfillment Service <FulfillmentService@healthwise.org>\",\n                \"subject\": \"This message was sent by Fulfillment Api\",\n                \"body\": \"<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>\"\n            }\n        }        \n    ],\n    \"deliverOn\":\"7/5/2017 8:59:01 PM\",\n    \"message\": {\n        \"note\": \"Good talking to you today {{consumer.name.given}}.\",\n        \"items\": [\n            {\n              \"href\": \"{{content.api}}/v1/content/abq6317/en-us/\",\n              \"presurveyhref\": \"{{content.api}}/v1/content/somepresurvey/en-us\",\n              \"postsurveyhref\": \"{{content.api}}/v1/content/somepostsurvey/en-us\"\n            }\n        ]\n    }\n}"
+            },
+            "url": "{{fulfillment.api}}/orders"
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache,no-cache, max-age=0, no-store, must-revalidate, private",
+              "name": "Cache-Control",
+              "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1201",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 12 Feb 2018 15:37:50 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Expires",
+              "value": "-1",
+              "name": "Expires",
+              "description": "Gives the date/time after which the response is considered stale"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache,no-cache",
+              "name": "Pragma",
+              "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+            },
+            {
+              "key": "Server",
+              "value": "Microsoft-IIS/10.0",
+              "name": "Server",
+              "description": "A name for the server"
+            },
+            {
+              "key": "X-AspNet-Version",
+              "value": "4.0.30319",
+              "name": "X-AspNet-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff",
+              "name": "X-Content-Type-Options",
+              "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN",
+              "name": "X-Frame-Options",
+              "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+            },
+            {
+              "key": "X-HW-Version",
+              "value": "1; equivalent-to=1",
+              "name": "X-HW-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Healthwise-Software-Version",
+              "value": "1.2.79.1",
+              "name": "X-Healthwise-Software-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "ASP.NET",
+              "name": "X-Powered-By",
+              "description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "1",
+              "name": "X-XSS-Protection",
+              "description": "Cross-site scripting (XSS) filter"
+            },
+            {
+              "key": "X-hw-request-id",
+              "value": "14182da4-41b0-482f-8f1c-00696ffd48e6",
+              "name": "X-hw-request-id",
+              "description": "Custom header"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "388",
+          "body": "{\"status\":201,\"versioning\":{\"X-HW-Version\":\"1\"},\"links\":{\"self\":\"https://fulfillment.test.hwapps.net/orders/8fc27f63-9dc6-4751-b7d0-b6b20a5e7885\"},\"schema\":\"https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.item.json\",\"data\":{\"actions\":[{\"action\":\"send.email\",\"data\":{\"from\":\"Fulfillment Service \\u003cFulfillmentService@healthwise.org\\u003e\",\"subject\":\"This message was sent by Fulfillment Api\",\"body\":\"\\u003cp style=\\u0027\\u0027\\u003eHello {{consumer.name.given}} {{consumer.name.family}},\\u003c/p\\u003e\\u003cp\\u003eHere is your \\u003ca href=\\u0027{{messagecenter.url}}\\u0027\\u003einformation\\u003c/a\\u003e\\u003c/p\\u003e\\u003cp\\u003eGo \\u003ca href=\\u0027{{messagecenter.optout}}\\u0027\\u003ehere\\u003c/a\\u003e to opt out of future messages\\u003c/p\\u003e\"}}],\"message\":{\"note\":\"Good talking to you today {{consumer.name.given}}.\",\"items\":[{\"href\":\"https://content.test.hwapps.net/v1/content/abq6317/en-us/\",\"presurveyhref\":\"https://content.test.hwapps.net/v1/content/somepresurvey/en-us\",\"postsurveyhref\":\"https://content.test.hwapps.net/v1/content/somepostsurvey/en-us\"}]},\"id\":\"8fc27f63-9dc6-4751-b7d0-b6b20a5e7885\",\"orderState\":{\"status\":\"Delayed\"},\"deliverOn\":\"2017-07-05T20:59:01\"}}"
+        }
       ]
+    },
+    {
+      "_postman_id": "249837-85797376-949d-05dc-2568-0a87f619efa9",
+      "name": "Get Batch Order",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt}}",
+            "description": "OAuth 2.0 JWT with fulfillment.api scope"
+          }
+        ],
+        "body": {},
+        "url": "{{fulfillment.api}}/batchorders/{{orderid}}",
+        "description": "Retrieves a batch order"
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "249837-f810e7f6-dfde-b76a-4b02-b6a4e2cf5516",
+      "name": "Create Batch Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt}}",
+            "description": "OAuth 2.0 JWT with fulfillment.api scope"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"consumers\": [\n        {\n            \"href\": \"{{consumer.api}}/v1/consumers/{{consumer.id}}\"\n        },\n        {\n            \"href\": \"{{consumer.api}}/v1/consumers/{{consumer.id.2}}\"\n        }\n    ],\n    \"actions\": [\n        {\n            \"action\": \"send.email\",\n            \"data\": {\n                \"from\": \"Fulfillment Service <FulfillmentService@healthwise.org>\",\n                \"subject\": \"This message was sent by Fulfillment Api\",\n                \"body\": \"<p style=''>Hello {{consumer.name.given}} {{consumer.name.family}},</p><p>Here is your <a href='{{messagecenter.url}}'>information</a></p><p>Go <a href='{{messagecenter.optout}}'>here</a> to opt out of future messages</p>\"\n            }\n        }        \n    ],\n    \"message\": {\n        \"note\": \"Good talking to you today {{consumer.name.given}}.\",\n        \"items\": [\n            {\n              \"href\": \"{{content.api}}/v1/content/aa113121/en-us/\"      \n            }\n        ]\n    }\n}"
+        },
+        "url": "{{fulfillment.api}}/batchOrders",
+        "description": "For for each consumer in the list, creates an order content and requests an optional email be sent to the consumer with a link to the content\n\n\n## Data Parameters\n| Parameter  | Type  | Description  | Allowed Values |\n|---|---|---|---|\n|consumer|object:Consumer|The consumer for which this order is being created||\n|actions|array:object:Action|The delivery action(s) to take upon successful processing||\n|message|object:Message|Message and item meta data ||"
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "249837-f0547c55-54e2-0b2e-8312-37714615099c",
+      "name": "List Batch Orders",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt}}",
+            "description": "OAuth 2.0 JWT with fulfillment.api scope"
+          }
+        ],
+        "body": {},
+        "url": {
+          "raw": "{{fulfillment.api}}/batchOrders?skip=0&top=5",
+          "host": [
+            "{{fulfillment.api}}"
+          ],
+          "path": [
+            "batchOrders"
+          ],
+          "query": [
+            {
+              "key": "skip",
+              "value": "0",
+              "equals": true,
+              "description": "number of records to skip for paged data"
+            },
+            {
+              "key": "top",
+              "value": "5",
+              "equals": true,
+              "description": "number of records to retrieve starting at \"skip\""
+            }
+          ]
+        },
+        "description": "Lists batch orders\n\n> Supports paging"
+      },
+      "response": [
+        {
+          "id": "249837-2f165603-97bb-88a8-b36a-e612ecdb22bd",
+          "name": "500 Internal Server Error",
+          "originalRequest": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text",
+                "description": "The content type of the request",
+                "disabled": false
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt}}",
+                "type": "text",
+                "description": "OAuth 2.0 JWT with fulfillment.api scope",
+                "disabled": false
+              }
+            ],
+            "body": {},
+            "url": "{{fulfillment.api}}/batchOrders"
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache,no-cache, max-age=0, no-store, must-revalidate, private",
+              "name": "Cache-Control",
+              "description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+            },
+            {
+              "key": "Connection",
+              "value": "close",
+              "name": "Connection",
+              "description": "Options that are desired for the connection"
+            },
+            {
+              "key": "Content-Length",
+              "value": "245",
+              "name": "Content-Length",
+              "description": "The length of the response body in octets (8-bit bytes)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8",
+              "name": "Content-Type",
+              "description": "The mime type of this content"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 12 Feb 2018 18:07:20 GMT",
+              "name": "Date",
+              "description": "The date and time that the message was sent"
+            },
+            {
+              "key": "Expires",
+              "value": "-1",
+              "name": "Expires",
+              "description": "Gives the date/time after which the response is considered stale"
+            },
+            {
+              "key": "Pragma",
+              "value": "no-cache,no-cache",
+              "name": "Pragma",
+              "description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+            },
+            {
+              "key": "Server",
+              "value": "Microsoft-IIS/10.0",
+              "name": "Server",
+              "description": "A name for the server"
+            },
+            {
+              "key": "X-AspNet-Version",
+              "value": "4.0.30319",
+              "name": "X-AspNet-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff",
+              "name": "X-Content-Type-Options",
+              "description": "The only defined value, \"nosniff\", prevents Internet Explorer from MIME-sniffing a response away from the declared content-type"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN",
+              "name": "X-Frame-Options",
+              "description": "Clickjacking protection: \"deny\" - no rendering within a frame, \"sameorigin\" - no rendering if origin mismatch"
+            },
+            {
+              "key": "X-HW-Version",
+              "value": "1; equivalent-to=1",
+              "name": "X-HW-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Healthwise-Software-Version",
+              "value": "1.2.79.1",
+              "name": "X-Healthwise-Software-Version",
+              "description": "Custom header"
+            },
+            {
+              "key": "X-Powered-By",
+              "value": "ASP.NET",
+              "name": "X-Powered-By",
+              "description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+            },
+            {
+              "key": "X-XSS-Protection",
+              "value": "1",
+              "name": "X-XSS-Protection",
+              "description": "Cross-site scripting (XSS) filter"
+            }
+          ],
+          "cookie": [],
+          "responseTime": "30271",
+          "body": "{\"status\":500,\"versioning\":{\"X-HW-Version\":\"1\"},\"links\":{\"self\":\"https://fulfillment.test.hwapps.net/batchOrders\"},\"schema\":\"https://fulfillment.test.hwapps.net/spec/schema.healthwise.api.error.json\",\"error\":{\"message\":\"An error has occurred.\"}}"
+        }
+      ]
+    },
+    {
+      "_postman_id": "249837-4ceaba40-7a4c-98f7-47d2-35931df8d43d",
+      "name": "List Orders Inside Batch Order",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt}}",
+            "description": "OAuth 2.0 JWT with fulfillment.api scope"
+          }
+        ],
+        "body": {},
+        "url": {
+          "raw": "{{fulfillment.api}}/batchorders/{{orderid}}/orders?status",
+          "host": [
+            "{{fulfillment.api}}"
+          ],
+          "path": [
+            "batchorders",
+            "{{orderid}}",
+            "orders"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "",
+              "equals": false,
+              "description": "The status to filter the batch orders to"
+            }
+          ]
+        },
+        "description": "Gets a list of orders created from a batch order, optionally filtered by status"
+      },
+      "response": []
+    },
+    {
+      "_postman_id": "249837-b0b98b75-c756-6d7c-7d69-f1b3e1357a47",
+      "name": "Get resource index",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt}}",
+            "description": "OAuth 2.0 JWT with fulfillment.api scope"
+          }
+        ],
+        "body": {},
+        "url": "{{fulfillment.api}}/{{filename}}",
+        "description": "<<TODO: What is this?>>"
+      },
+      "response": []
     }
-  }
+  ]
 }
